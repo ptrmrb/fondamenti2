@@ -3,3 +3,5 @@ public class lezione0503{
         System.out.println("ciao");
     }
 }
+
+e senti un po 
