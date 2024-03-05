@@ -1,8 +1,8 @@
-package Lezioni;
+package lezioni;
 
 //import terminale.*; // * vuol dire importa tutte le classi presenti nel package termiale 
 
-public class lezione0503 
+public class Lezione0503
 {
     public static void main(String[] args)
     {
@@ -62,9 +62,6 @@ public class lezione0503
             ret[i] = buf[i];
 
         return ret;
-
-        ciao
-
     }
 }
 
