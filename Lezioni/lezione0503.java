@@ -2,7 +2,7 @@ package lezioni;
 
 //import terminale.*; // * vuol dire importa tutte le classi presenti nel package termiale 
 
-public class Lezione0503
+public class lezione0503
 {
     public static void main(String[] args)
     {
@@ -17,7 +17,6 @@ public class Lezione0503
         int[] a = new int[] {1,0,-2, 3, 5, -1, 3};
         int[] positivi = selezionaPositivi2(a);
         
-        System.out.println("");
         System.out.println(positivi);
     }
     
