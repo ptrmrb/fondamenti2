@@ -14,9 +14,12 @@ public class lezione0503
         Terminale.stampa(valore);
         Math.sqrt(valore);
 
+        int[] a = new int[] {1,0,-2, 3, 5, -1, 3};
+        int positivi = selezionaPositivi1(a);
+
     }
     
-    public static int[] selezionaPositivi( int[] arr ) 
+    public static int[] selezionaPositivi1( int[] arr ) 
     {
         int numeroPositivi = 0 ;
         for ( int n : arr)
@@ -25,16 +28,39 @@ public class lezione0503
         
         int[] ret = new int[numeroPositivi];
 
-        int posizioneLibera = 0; // tengo a mente la prima posizione libera in cui possiamo posizionare il valore
+        int posizioneLibera = 0; // tiene a mente la prima posizione libera in cui possiamo posizionare il valore e tiene anche a mente il numero di elementi già inserito
         for ( int i = 0; i < arr.length; i++ )
             if (arr[i] > 0)
+            {
+                ret[posizioneLibera] = arr[i];
+                posizioneLibera++;
 
+                /*if (posizioneLibera == numeroPositivi)
+                    break;*/
+            }
 
+        return ret;
+    
+    public static int[] selezionaPositivi2( int[] arr )
+    { // quando creo una struttura d'appoggio, il suo nome è buffer
 
+        int[] buf = new int[arr.length];
+        int posizioneLibera = 0;
 
-        return 0;
+        for(int n : arr)
+            if (n > 0)
+            {
+                buf[posizioneLibera] = n;
+                posizioneLibera++;
+            }
 
+        int [] ret = new int[posizioneLibera];
+        for( int i = 0; i < posizioneLibera; i++)
+            ret[i] = buf[i];
 
+        return ret;
+
+    }
     }
 }
 
