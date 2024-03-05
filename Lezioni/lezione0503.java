@@ -16,6 +16,25 @@ public class lezione0503
 
     }
     
+    public static int[] selezionaPositivi( int[] arr ) 
+    {
+        int numeroPositivi = 0 ;
+        for ( int n : arr)
+            if (n > 0)
+                numeroPositivi++;
+        
+        int[] ret = new int[numeroPositivi];
 
+        int posizioneLibera = 0; // tengo a mente la prima posizione libera in cui possiamo posizionare il valore
+        for ( int i = 0; i < arr.length; i++ )
+            if (arr[i] > 0)
+
+
+
+
+        return 0;
+
+
+    }
 }
 
