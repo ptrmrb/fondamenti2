@@ -10,9 +10,12 @@ public class lezione0503
         String risposta = " Ciao, " + nome + "!";
         Terminale.stampa(risposta);
 
+        double valore = Math.PI;
+        Terminale.stampa(valore);
+        Math.sqrt(valore);
+
     }
     
 
-    }
 }
 
