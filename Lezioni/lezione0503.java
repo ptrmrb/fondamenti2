@@ -41,21 +41,21 @@ public class lezione0503
 
         return ret;
     
-    public static int[] selezionaPositivi2( int[] arr )
+    public static int[] selezionaPositivi2( int[] arr2 )
     { // quando creo una struttura d'appoggio, il suo nome è buffer
 
-        int[] buf = new int[arr.length];
-        int posizioneLibera = 0;
+        int[] buf = new int[arr2.length];
+        int posizioneLibera1 = 0;
 
-        for(int n : arr)
+        for(int n : arr2 )
             if (n > 0)
             {
-                buf[posizioneLibera] = n;
-                posizioneLibera++;
+                buf[posizioneLibera1] = n;
+                posizioneLibera1++;
             }
 
-        int [] ret = new int[posizioneLibera];
-        for( int i = 0; i < posizioneLibera; i++)
+        int [] ret = new int[posizioneLibera1];
+        for( int i = 0; i < posizioneLibera1; i++)
             ret[i] = buf[i];
 
         return ret;
