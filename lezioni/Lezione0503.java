@@ -59,6 +59,6 @@ public class Lezione0503 {
             ret[i] = buf[i];
 
         return ret;
-
+            
     }
 }
