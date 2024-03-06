@@ -1,9 +1,6 @@
 package lezioni;
 
-//import terminale.*; // * vuol dire importa tutte le classi presenti nel package termiale 
-
-public class lezione0503
-{
+public class Lezione0503 {
     public static void main(String[] args)
     {
         /*String nome  = Terminale.richiediStringa("Come ti chiami?");
@@ -17,6 +14,7 @@ public class lezione0503
         int[] a = new int[] {1,0,-2, 3, 5, -1, 3};
         int[] positivi = selezionaPositivi1(a);
         
+        System.out.println("");
         System.out.println(positivi);
     }
     
@@ -61,10 +59,6 @@ public class lezione0503
             ret[i] = buf[i];
 
         return ret;
-<<<<<<< HEAD
-=======
 
->>>>>>> d4342e0 (ciao)
     }
 }
-
