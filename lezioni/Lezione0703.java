@@ -21,7 +21,7 @@ public class Lezione0703 {
     comitiva[4] = null;
 
     String s1 = p1.toString();
-    String s2 = p2.toString();
+    //String s2 = p2.toString();
 
     //Terminale.stampa(p1);
     System.out.println(s1);
