@@ -26,8 +26,5 @@ public class Lezione0703 {
     //Terminale.stampa(p1);
     System.out.println(s1);
 
-        
-
-
     }
 }
