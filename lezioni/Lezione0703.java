@@ -23,8 +23,7 @@ public class Lezione0703 {
     String s1 = p1.toString();
     //String s2 = p2.toString();
 
-    //Terminale.stampa(p1);
-    System.out.println(s1);
+    Terminale.stampa(s1);
 
     }
 }

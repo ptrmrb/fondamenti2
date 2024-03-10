@@ -1,3 +1,4 @@
+package lezioni;
 
 
 public class Terminale {
