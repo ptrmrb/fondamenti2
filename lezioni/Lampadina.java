@@ -33,6 +33,19 @@ public class Lampadina {
             return "Lampadina spenta";
     }
 
+    public boolean equals(Object o)
+    {
+        if ( o == null )
+            return false;
+        if ( o == this )
+            return false;
+        if (!(o instanceof Lampadina))
+            return false;
+
+        Lampadina l = (Lampadina)o;
+
+        return accesa == l.accesa;
+    }
 
 
 }

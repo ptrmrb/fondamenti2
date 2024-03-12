@@ -56,17 +56,15 @@ public class Persona
         annoNascita = p.annoNascita;
     }
 
-    public boolean equals()
+    public boolean equals(Object o)
     {
         if ( o == null )
             return false;
         if (!(o instanceof Persona))
             return false;
-        else 
-        
+        Persona p = (Persona)o;
+        return nome.equals(p.nome) && cognome.equals(p.cognome) && annoNascita == p.annoNascita;
     }
-
-    Object 
 
 
 

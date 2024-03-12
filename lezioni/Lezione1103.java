@@ -30,11 +30,30 @@ public class Lezione1103
         Lampadina l2 = new Lampadina();
         l2.premiBottone();
 
-        Terminale.stampa(l2);
+        //Terminale.stampa(l2);
 
         // per sapere se un oggetto è una instanza di una classe esiste il
         // metodo instanceof che restituisce un boolean 
 
+        Persona p1 = new Persona("Mario", "Rossi", 2005);
+        Persona p2 = new Persona("Mario", "Rossi", 2005);
+        
+        Terminale.stampa(p1.equals(p2));
+
+        Lampadina[] striscia = new Lampadina[100];
+
+        for ( int i = 0; i < 100; i++)
+            striscia[i] = new Lampadina();
+            //operazione di pressione del bottone su alcune lampadine
+        striscia[35].premiBottone();
+        striscia[24].premiBottone();
+            
+
+        for ( int i = 0; i < 100; i++ )
+            if (striscia[i].equals(new Lampadina()));
+                Terminale.stampa("SI"); 
+
+
+        }
 
     }    
-}
