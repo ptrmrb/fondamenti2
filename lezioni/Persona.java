@@ -56,5 +56,18 @@ public class Persona
         annoNascita = p.annoNascita;
     }
 
+    public boolean equals()
+    {
+        if ( o == null )
+            return false;
+        if (!(o instanceof Persona))
+            return false;
+        else 
+        
+    }
+
+    Object 
+
+
 
     }

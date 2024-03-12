@@ -17,9 +17,9 @@ public class Lampadina {
     public void premiBottone()
     {
         if(accesa)
-            accesa = true;
-        else
             accesa = false;
+        else
+            accesa = true;
     }
 
     public void premiBottone1(){

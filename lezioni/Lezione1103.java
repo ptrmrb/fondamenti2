@@ -3,6 +3,8 @@ package lezioni;
 public class Lezione1103 
 {
     public static void main ( String[] args){
+    /* 
+
         Persona[] a = new Persona[3];
         a[0] = new Persona("Mario", "Rossi", 2005);
         a[0] = new Persona("Luigi", "Neri", 2005);
@@ -21,11 +23,18 @@ public class Lezione1103
         //Persona q = new Persona(p.getNome(), p.getCognome(), p.getAnnoNascita()); al posto di questo riga invoco sull' oggetto p, il metodo di copia
         Persona q = new Persona(p);
 
-        Terminale.stampa(q.toString());
-
-        Lampadina l = new Lampadina();
-        Terminale.stampa(l);
+        Terminale.stampa(q.toString()); */
         
+        Lampadina l1 = new Lampadina();
+
+        Lampadina l2 = new Lampadina();
+        l2.premiBottone();
+
+        Terminale.stampa(l2);
+
+        // per sapere se un oggetto è una instanza di una classe esiste il
+        // metodo instanceof che restituisce un boolean 
+
 
     }    
 }
