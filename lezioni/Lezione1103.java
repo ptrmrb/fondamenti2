@@ -23,5 +23,9 @@ public class Lezione1103
 
         Terminale.stampa(q.toString());
 
+        Lampadina l = new Lampadina();
+        Terminale.stampa(l);
+        
+
     }    
 }
