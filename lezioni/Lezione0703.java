@@ -23,7 +23,10 @@ public class Lezione0703 {
     String s1 = p1.toString();
     //String s2 = p2.toString();
 
-    Terminale.stampa(s1);
+    //Terminale.stampa(s1);
+
+    Persona p4 = new Persona("Mario", "Vizza", 2004);
+
 
     }
 }
