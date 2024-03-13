@@ -28,7 +28,40 @@ public class Lezione1303
 
         */
 
+        // l'array di lunghezza variavbile è l'arraylist 
+        // La classa ArrayList non può contenere tipi primitivi, solo oggetti. E tutti gli oggetti
+        // all'interno di un arraylist devo essere gli stessi. 
+        // ArrayList a = new ArrayList(); NON SI PUO FARE
+
+        ArrayList<String> a = new ArrayList<>(); // è MUTABILISSIMO RAGA
+        Terminale.stampa(a.size()); // dice la quantità di oggetti contenuti nell'arraylist 
+        // JFC = JAVA COLLECTIONS FRAMEWORK 
+
+        a.add("abc");
+        a.add("def");
+        a.add("ghi");
+
+        Terminale.stampa(a.size());
+        Terminale.stampa(a.get(1)); // prende l'elemento in posizione 1
+        Terminale.stampa(a.isEmpty()); // controlla se è vuoto 
+        //a.clear(); // lo svuota 
+        Terminale.stampa(a.isEmpty());
+        Terminale.stampa(a.contains("def")); // true se l'elemento si trova nell'oggetto
+
+        ArrayList<String> b = new ArrayList<>(a);
+        Terminale.stampa(a);
+        Terminale.stampa(b);
+        Terminale.stampa(a.equals(b));
+        Terminale.stampa(a == b);
+
+        Terminale.stampa(a.indexOf("def"));
         
+
+
+
+
+
+
 
 
 
