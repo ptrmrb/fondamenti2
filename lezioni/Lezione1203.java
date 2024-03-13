@@ -1,6 +1,6 @@
 package lezioni;
 
-public class Lezione1103 
+public class Lezione1203 
 {
     public static void main ( String[] args){
     /* 
@@ -52,7 +52,6 @@ public class Lezione1103
         for ( int i = 0; i < 100; i++ )
             if (striscia[i].equals(new Lampadina()));
                 Terminale.stampa("SI"); 
-
 
         }
 
