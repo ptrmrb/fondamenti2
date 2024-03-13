@@ -1,5 +1,5 @@
 
-package lezioni;
+package terminale;
 
 
 public class Terminale {
