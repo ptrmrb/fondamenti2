@@ -34,11 +34,48 @@ public class Lezione1403 {
          * 
          */
 
+         /*
          Biglietto b1 = new Biglietto();
          Terminale.stampa(b1);
          Biglietto b2 = new Biglietto();
          Terminale.stampa(b2);
          Biglietto b3 = new Biglietto();
          Terminale.stampa(b3);
+
+         Biglietto.reset();
+
+         Biglietto b4 = new Biglietto();
+         Terminale.stampa(b4);
+
+         */
+
+        ArrayList<Integer> a = new ArrayList<>();
+        for ( int n = 1; n<= 10 ; n++)
+            a.add(n);
+        Terminale.stampa(a);
+
+        Collections.shuffle(a); // mescola gli elementi all'interno dell'array
+        Terminale.stampa(a);
+
+        Collections.sort(a); // ordina gli elementi in ordine crescente 
+        Terminale.stampa(a);
+
+        Terminale.stampa(Collections.max(a));
+        Terminale.stampa(Collections.min(a));
+
+        int b = Collections.binarySearch(a,5); // ricerca binaria
+        Terminale.stampa(b);
+
+
+        ArrayList<Persona> p = new ArrayList<>();
+        p.add(new Persona("a", "z", 1990));
+        p.add(new Persona("z", "a", 2000));
+
+        Terminale.stampa(a);
+
+        Collections.
+
+
+
     }
 }
