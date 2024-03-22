@@ -17,10 +17,21 @@ public class Lezione2103{
             s = "minorenne";
 
         Terminale.stampa(s);
-        Terminale.stampa(s); 
 
-        String s = (eta >= 18 ? "maggiorenne" : " minorenne");
+        // altro modo di scrivere questo assegnamento ma in una sola riga
+        // attraverso l'operatore '?'
 
-        Terminale.stampa(s);
+        String s1 = (eta >= 18 ? "maggiorenne" : " minorenne");
+
+        Terminale.stampa(s1);
+
+
+        // noi sappiamo che a++ ha un valore, cosa da non fare mai:
+
+        int a = 5; 
+        int b = a++; // se faccio stampare b, vale 5 perche assegna il valore prima dell'incremento
+
+        // int b = ++a; questo invece vale 
+
     }
 }
