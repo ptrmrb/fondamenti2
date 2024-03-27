@@ -21,4 +21,13 @@ public class Esercitazione2003
         dim = numRigheOk * m[0].length;
         int[] ris = new int[dim]; 
     }
+
+    private static boolean rigaTuttiDispari(int[][]m , int riga)
+    {
+        for( int j = 0; j<m.length; j++){
+            if ( m[riga][j] % 2 == 0 )
+                return false;
+            return true; 
+        }
+    }
 }
