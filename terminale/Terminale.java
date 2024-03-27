@@ -98,5 +98,12 @@ public class Terminale {
 	public static void stampa(boolean s)
 	{	System.out.println(s);
 	}
+
+	public static void stampaMatrice(int[][] matrice)
+	{
+		for ( i = 0; i < matrice.length; i++){
+			Terminale.stampa(matrice[i]);
+		}
+	}
 }
 
