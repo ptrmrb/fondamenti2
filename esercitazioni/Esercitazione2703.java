@@ -49,6 +49,40 @@ public static void main( String[] args)
     int[] x = filtraMatrice(m);
 
     Terminale.stampaMatrice(x);
+}
 
+// data una matrice di interi non negativi restituire l'indice
+// di riga con somma più alto 
+
+public static int rigaMaggiore( int[][]m )
+{
+    int sommaMax = 0; // inizializzazione fittizia
+    int indexMax = 0; // inizializzazione fittizia
+
+    for ( int i = 0; i < m.length ; i++)
+    {
+        int sommaRiga = calcolaSommaRiga(m,i);
+        if ( sommaRiga > sommaMax )
+        {
+            sommaMax = sommaRiga;
+            indexMax = i; 
+        }
+        return indexMax;
+    }
 
 }
+
+private static int calcolaSommaRiga ( int [][] m , int indice)
+{
+    int sommma = 0; 
+    for ( int j = 0; j < m.length ; j++)
+    {
+        sommma += m[indice][j];
+    }
+    return somma; 
+}
+
+/* Data una matrice di interi restituire true se la somma degli
+elementi sulla diagonale principale è uguale alla somma degli 
+elementi della diagonale secondaria , false altrimenti.*/
+
