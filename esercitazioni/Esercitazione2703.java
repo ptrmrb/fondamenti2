@@ -26,7 +26,7 @@ public class Esercitazione2703
         {   if ( rigaTuttiDispari(m,i) )
             {   for ( int j = 0; i<m[0].length; j++ )
                 {   ris[pos] = m[i][j];
-                    pos++
+                    pos++;
                 } 
             }
         }   
@@ -38,8 +38,9 @@ public class Esercitazione2703
                 return false;
             return true; 
         }
+        return ris;
     }
-    return ris;
+    
 }
 
 public static void main( String[] args)
@@ -80,6 +81,8 @@ private static int calcolaSommaRiga ( int [][] m , int indice)
         sommma += m[indice][j];
     }
     return somma; 
+}
+
 }
 
 /* Data una matrice di interi restituire true se la somma degli
