@@ -89,3 +89,29 @@ private static int calcolaSommaRiga ( int [][] m , int indice)
 elementi sulla diagonale principale è uguale alla somma degli 
 elementi della diagonale secondaria , false altrimenti.*/
 
+public static boleean verificaDiagonali(int[][]m)
+{
+    int sommaDP = 0; 
+    int sommaDS = 0;
+
+    for ( int i = 0; )
+
+}
+
+
+/* Data una matrice di interi  (positivi e negativi) restituire un array contenente tutti  valori
+positiv(i pari (>0)*/
+
+public static int[] valoriPositiviPari (int [][] m )
+{
+    int numPP = 0; 
+
+    for ( int i = 0; i< m.length; i++)
+        for ( int j = 0; j < m.length; j++ )
+            if (m[i][j] > 0 && m[i][j]%2 == 0)
+            {
+                ris[pos] = m[i][j];
+                numPP++;
+            }
+    return ris; 
+}
