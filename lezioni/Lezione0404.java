@@ -34,6 +34,30 @@ public class Lezione0404
         iteratore.add(100);
         Terminale.stampa(lista);
 
+        // se invoco la funzione remove, l'iteratore rimuove l'ultimo valore attraversato
+        // infatti funziona solamente nel momento in cui l'iteratore attraversa qualche valore
+
+        iteratore.set(70); 
+
+        // imposta il valore 70 al valore che ha appena attraversato
+
+        // esercizio: calcola la somma della lista a partire da un elemento
+
+        // portare l'iteratore in posizione con iteratore.next e previous
+
+        int s = sommaDa(iteratore);
+        Terminale.stampa(s);
+
+    }
+
+    private static int sommaDa( ListIterator<Integer>  it )
+    {
+        if ( !it.hasNext() )
+            return 0;
+            
+        int valore = it.next();
+        return valore + sommaDa(it); 
+
     }
 
 }
