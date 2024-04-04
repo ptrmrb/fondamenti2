@@ -54,10 +54,31 @@ public class Lezione0404
     {
         if ( !it.hasNext() )
             return 0;
-            
+
         int valore = it.next();
         return valore + sommaDa(it); 
 
     }
 
-}
+    public static int somma( LinkedList lista)
+    {   ListIterator<Integer> it = lista.listIterator();
+    return sommaDa(it);
+    }
+
+    // ricorsione in coda -> prendo il primo valore e poi faccio la ricorsione sugli altri elementi
+    // al contrario della ricorsione in coda che prima effettua la ricorsione e poi effettua un calcolo"
+
+
+    public static boolean ePalidroma( String s )
+    {
+        int lunghezza = s.length(); 
+        if ( lunghezza < 2 )
+            return True;
+        if ( s.charAt(0) != s.charAt ( lunghezza - 1))
+            return False;
+            
+        String m = s.substring(1, lunghezza -1);
+        return ePalidroma(m);
+
+    }
+}   
