@@ -73,8 +73,6 @@ public class Lezione1403 {
 
         Terminale.stampa(a);
 
-        Collections.
-
 
 
     }

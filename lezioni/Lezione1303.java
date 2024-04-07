@@ -101,8 +101,7 @@ public class Lezione1303
         ArrayList<Integer> d = new ArrayList<>();
 
         for (int n = 1; n <= 100; n++){
-            a.add(n);
-
+            d.add(n);
         }
 
 

@@ -1,4 +1,5 @@
 package esercitazioni;
+import terminale.*;
 
 public class Esercitazione2703 
 {
@@ -9,27 +10,27 @@ public class Esercitazione2703
 
     public static int[] filtraMatrice (int[][] m)
     {
-        int[] ret = new int [dim]; // utilizzare quando non conosciamo la dimensione di qualche ogetto
+        
         int dim = 0;
+        int[] ret = new int [dim]; // utilizzare quando non conosciamo la dimensione di qualche ogetto
         int numRigheOk = 0;
 
         for ( int i = 0; i<m.length; i+=2) // incrementiamo di 2 in modo tale da controllare le righe pari, ovvero il passo
-        {
             if ( rigaTuttiDispari(m,i) )
                 numRigheOk ++; 
-        }
+        
         dim = numRigheOk * m[0].length;
         int[] ris = new int[dim];
         int pos = 0;
 
-        for ( int i = 0; i<m.length; i+=2)
-        {   if ( rigaTuttiDispari(m,i) )
+        for( int i = 0; i<m.length; i+=2)
+            if( rigaTuttiDispari(m,i) )
             {   for ( int j = 0; i<m[0].length; j++ )
                 {   ris[pos] = m[i][j];
                     pos++;
                 } 
             }
-        }   
+    }
 
     private static boolean rigaTuttiDispari(int[][]m , int riga)
     {
@@ -70,26 +71,24 @@ public static int rigaMaggiore( int[][]m )
         }
         return indexMax;
     }
-
 }
 
 private static int calcolaSommaRiga ( int [][] m , int indice)
 {
-    int sommma = 0; 
+    int somma = 0; 
     for ( int j = 0; j < m.length ; j++)
     {
-        sommma += m[indice][j];
+        somma += m[indice][j];
     }
     return somma; 
 }
 
-}
 
 /* Data una matrice di interi restituire true se la somma degli
 elementi sulla diagonale principale è uguale alla somma degli 
 elementi della diagonale secondaria , false altrimenti.*/
 
-public static boleean verificaDiagonali(int[][]m)
+public static boolean verificaDiagonali(int[][]m)
 {
     int sommaDP = 0; 
     int sommaDS = 0;

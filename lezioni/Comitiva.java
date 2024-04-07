@@ -41,7 +41,7 @@ public class Comitiva {
     public void rimuoviPartecipante(Persona p)
     {
         partecipanti.remove(p);
-    }Ω
+    }
 
     public void sostituisciPartecipante(int i, Persona p)
     {

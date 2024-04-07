@@ -5,7 +5,7 @@ import terminale.*;
 public class Lezione0703 {
     public static void main( String[] args )
     {
-    /*    
+    /*  
     Persona p1 = new Persona();
     p1.nome = "Mario";
     p1.cognome = "Vizza";
@@ -15,10 +15,10 @@ public class Lezione0703 {
     p2.nome = "Luigi";
     p2.cognome = "Senatore";
     p2.annoNascita = 2005;
-    */
+     */
 
     Persona[] comitiva = new Persona[5];
-    comitiva[0]  = p1;
+    comitiva[0] = p1;
     comitiva[1] = p2;
     comitiva[2] = null;
     comitiva[3] = null;

@@ -7,7 +7,6 @@ public class Persona
     private String cognome; 
     private int annoNascita;
 
-
     public String toString()
     {   return nome + " " + cognome + " nato nel " + annoNascita;
     }
@@ -35,7 +34,6 @@ public class Persona
     public int getAnnoNascita(){
         return annoNascita;
     }
-
 
     // constructor method
 
@@ -65,9 +63,5 @@ public class Persona
         Persona p = (Persona)o;
         return nome.equals(p.nome) && cognome.equals(p.cognome) && annoNascita == p.annoNascita;
     }
-
-
-    
-
 
     }
