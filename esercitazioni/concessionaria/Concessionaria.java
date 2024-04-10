@@ -11,7 +11,7 @@ public class Concessionaria{
     {
         magazzino = new ArrayList<>();
         for (Automobile a: c.magazzino){
-            Autombile a1 = new Automobile( )
+            Automobile a1 = new Automobile( )
 
         }
 
