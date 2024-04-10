@@ -15,7 +15,7 @@ public class Lezione0904_Automa
 
     }
 
-    private void transizione( char c ) // lo carica lui 
+    private void transizione( char c ) // da finire 
     {
         switch (stato)
         {
