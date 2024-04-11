@@ -1,6 +1,7 @@
 package concessionaria;
 
 import java.util.ArrayList;
+import terminale.*;
 
 public class Concessionaria{
 
@@ -14,7 +15,6 @@ public class Concessionaria{
             Autombile a1 = new Automobile(a1.getModello ... );
 
         }
-
     }
 
     public void stampaAutomobili()
@@ -31,7 +31,7 @@ public class Concessionaria{
         ArrayList<String> caseProd = estraiCaseProduttrici();
         String casaRic = caseProd.get(0);
         int maxOccorreze = contaOccorrenze(casaRic);
-        for ( int i = 1; i < casaProd.size(); i++ )
+        for ( int i = 1; i < caseProd.size(); i++ )
         {
             int occorrenze = contaOccorrenze(caseProd.get(i))
             if ( occorrenze > maxOccorreze )
@@ -43,6 +43,7 @@ public class Concessionaria{
     }
 
     private ArrayList<String> estraiCaseProduttrici(){
+
         ArrayList<String> caseProd = new ArrayList<>();
         String casa = a.getCasaProduttrice();
         for (Automobile a: magazzino){
@@ -55,7 +56,7 @@ public class Concessionaria{
     private int contaOccorrenze(String casa)
     {
         int cont = 0; 
-        for ( Autombile a: magazzino){
+        for ( Automobile a: magazzino){
             if (a.getCasaProduttrice().equals(casa))
                 cont ++;
         }
@@ -66,7 +67,7 @@ public class Concessionaria{
 
     public Automobile cilindrataMinima()
     {
-        int cilindrataMin = Integer.max_value;
+        int cilindrataMin = Integer.MAX_VALUE;
         Automobile aMin = null; 
         for ( Automobile a: magazzino ){
             if ( a.getPrezzo() < 10000 && (aMin == null || a.getCilindrata() < aMin.getCilindrata() ) )
