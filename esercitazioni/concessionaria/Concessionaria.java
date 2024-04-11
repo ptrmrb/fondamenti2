@@ -86,7 +86,8 @@ public class Concessionaria{
         return ris;
     }
 
-    //trovare le case produttrici che producono solo auto con un prezzo inferiore alla media dei prezzi delle auto
+    //trovare le case produttrici che producono solo auto con un prezzo inferiore alla media dei prezzi 
+    //delle auto
 
     public ArrayList caseEconomiche()
     {
@@ -99,9 +100,13 @@ public class Concessionaria{
                 ris.add(casa);
         return ris;  
     }
-    private boolean soloPrezzoInferiore()
-    {
-        
 
+    // ret true sse tutte le automoibili di quella casaProd hanno prezzo ok
+    private boolean soloPrezzoInferiore(String casa, float mediaPrezzi)
+    {
+        for ( Automobile a: magazzino )
+            if ( a.getCasaProduttrice().equals(casa) && a.getPrezzo >= mediaPrezzi )
+                return false;
+        return true;
     }
 }
