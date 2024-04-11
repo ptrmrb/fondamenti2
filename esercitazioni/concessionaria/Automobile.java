@@ -49,6 +49,7 @@ public class Automobile
     return numeroTelaio;
    }
 
+    @Override
    public String equals(Object o)
    {    
         if ( o == null )
