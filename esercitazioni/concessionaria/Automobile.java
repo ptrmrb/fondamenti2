@@ -15,7 +15,7 @@ public class Automobile
     
     */ 
 
-   public Automobile (String modello, String colore, String casaProduttrice, int cilindrata, String numeroTelaio) 
+   public Automobile (String modello, String colore, String casaProduttrice, int cilindrata, float prezzo, String numeroTelaio) 
    {    
         this.modello = modello;
         this.colore = colore;
@@ -49,7 +49,7 @@ public class Automobile
     return numeroTelaio;
    }
 
-   public String toString(Object o)
+   public String equals(Object o)
    {    
         if ( o == null )
             return false; 
