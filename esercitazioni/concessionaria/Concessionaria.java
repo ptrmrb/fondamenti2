@@ -62,5 +62,46 @@ public class Concessionaria{
         return cont;
     }
     
+    // trovare l'auto con cilindrata più bassa con il prezzo inferiore a 10.000 euri
 
+    public Automobile cilindrataMinima()
+    {
+        int cilindrataMin = Integer.max_value;
+        Automobile aMin = null; 
+        for ( Automobile a: magazzino ){
+            if ( a.getPrezzo() < 10000 && (aMin == null || a.getCilindrata() < aMin.getCilindrata() ) )
+                aMin = a;
+                cilindrataMin = a.getCilindrata(); 
+        } 
+    return aMin; 
+    }
+
+    public Automobile cilindrataAlta()
+    {
+        float mediaPrezzi = sommaPrezzi()/magazzino.size(); 
+        Automobile ris = null;
+        for ( Automobile a: magazzino)
+            if ( a.getPrezzo() > mediaPrezzi && ( ris == null || a.getCilindrata() > ris.getCilindrata()))
+                ris = a; 
+        return ris;
+    }
+
+    //trovare le case produttrici che producono solo auto con un prezzo inferiore alla media dei prezzi delle auto
+
+    public ArrayList caseEconomiche()
+    {
+        ArrayList<String> tutteCase = estraiCaseProduttrici;
+        float mediaPrezzi = sommaPrezzi()/magazzino.size();
+        ArrayList<String> caseEc = new ArrayList<>();
+
+        for ( String casa: tutteCase )
+            if ( soloPrezzoInferiore(casa, mediaPrezzi) )
+                ris.add(casa);
+        return ris;  
+    }
+    private boolean soloPrezzoInferiore()
+    {
+        
+
+    }
 }
