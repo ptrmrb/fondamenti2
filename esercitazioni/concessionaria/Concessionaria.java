@@ -110,4 +110,42 @@ public class Concessionaria{
                 return false;
         return true;
     }
+
+    public ArrayList<String> caseStessaCilindrata() 
+    {
+        ArrayList<String> tutteCase = estraiCaseProduttrici();
+        ArrayList<String> ris = new ArrayList(); 
+        for ( String casa: tutteCase )
+        {
+            if ( stessaCilindrata(casa) )
+                ris.add(casa);
+        }
+    }
+
+    private boolean stessaCilindrata(String casa)
+    {
+        ArrayList<Automobile> autoCasa = new ArrayList<>();
+        for  (Automobile a: magazzino)
+            if ( a.getCasaProduttrice().equals(casa))
+                autoCasa.add(a);
+        int cilindrata = autoCasa.get(0);
+        for ( int i = 1; i < autoCasa.size(); i++ )
+            if ( ! ( autoCasa.get(i).getCilindrata() != cilindrata ))
+                return false;
+        return true; 
+    }
+
+    private boolean stessaCilindrata2(String casa)
+    {
+        ArrayList<Integer> cilindrateCasa = new ArrayList<>();
+        for  (Automobile a: magazzino)
+            if ( a.getCasaProduttrice().equals(casa))
+                cilindrateCasa.add(a.getCilindrata());
+
+        int cilindrata = autoCasa.get(0);
+        for ( int i = 1; i < autoCasa.size(); i++ )
+            if ( cilindrateCasa.get(i) != cilindrata )
+                return false;
+        return true; 
+    }
 }
