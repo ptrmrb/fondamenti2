@@ -1,7 +1,7 @@
 /*
  * Progettare e implementare una classe Concessionaria tenendo conto delle seguenti
  * specifiche:
- * 		-	La concessionaria contiene un magazzino (cio� una lista di automobili).
+ * 		-	La concessionaria contiene un magazzino (cioè una lista di automobili).
  * 		-	La classe deve contenere metodi per:
  * 				-	aggiungere un'auto al magazzino;
  * 				-	rimuovere un'auto dal magazzino;
