@@ -7,12 +7,11 @@ public class Comitiva {
     
     public ArrayList<Persona> getPartecipanti()
     {
-        //  SHALLOW PROTECTIVE COPY -> in modo tale che l'utente non possa modificare i dati contenuti nella classe
+        // SHALLOW PROTECTIVE COPY -> in modo tale che l'utente non possa modificare i dati contenuti nella classe
         return new ArrayList<Persona>(partecipanti); 
     } 
     
-    // CONSTRUCTOR 
-
+    // CONSTRUCTOR
     public Comitiva()
     {
         partecipanti = new ArrayList<>(); 
