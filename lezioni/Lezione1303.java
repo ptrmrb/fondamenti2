@@ -109,7 +109,7 @@ public class Lezione1303
         ArrayList<Persona> p = e.getPartecipanti();
         p.add(new Persona("Mario", "Rossi ", 2005));
 
-        Terminale.stampa(e.toString());
+        Terminale.stampa(e.toString()); // ciao
 
 
 
