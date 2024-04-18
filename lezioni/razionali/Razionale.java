@@ -120,6 +120,12 @@ public class Razionale
 			ret += "/" + denominatore;
 		return ret;
 	}
-
 	
+	public static Razionale prodotto( Razionale x, Razionale y)
+	{
+		Razionale r = new Razionale(x);
+		ret.moltiplica()
+
+	}
+
 }
