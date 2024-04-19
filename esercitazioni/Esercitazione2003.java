@@ -1,5 +1,3 @@
-package esercitazioni;
-
 public class Esercitazione2003 {
     // i metodi statici accedono solo alle variabili statiche
     // i metodi dinamici ( di istanza ) accedono a tutte le variabili 

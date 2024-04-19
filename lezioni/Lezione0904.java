@@ -39,9 +39,9 @@ public class Lezione0904 {
     public static boolean eCrescente( LinkedList<Integer> lista )
     {   
         if(lista.isEmpty())
-            return True;
+            return true;
 
-        ListaIterator<Integer> it = lista.ListIterator();
+        ListIterator<Integer> it = lista.ListIterator();
         int primo = it.next();
         return eCrescenteDa(primo, it); 
         

@@ -1,4 +1,3 @@
-package esercitazioni;
 import terminale.*;
 
 public class Esercitazione2703 
