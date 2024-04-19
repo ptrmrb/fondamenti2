@@ -6,11 +6,6 @@ public class Esercitazione2003 {
 
     // String[] args sono i parametri che vengono passati automaticamente al main
 
-    public static void main ( String[] newargs){
-
-        
-    }
-
     // Riceve in input un array l di lunghezza n con n pari e restituisce un 
     // array di lunghezza n/2 il cui i-esimo elemento è pari a l[2*i] + l[2*i + 1]
 

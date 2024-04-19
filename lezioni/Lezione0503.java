@@ -1,4 +1,4 @@
-package lezioni;
+
 
 public class Lezione0503 {
     public static void main(String[] args)

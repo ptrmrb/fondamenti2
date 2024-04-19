@@ -2,7 +2,7 @@ package rubrica;
 
 // La classe genera oggetti mutabili
 public class Contatto 
-{	private String nome, cognome, email;
+{	private String nome, cognome, email; // attributi 
 	private NumeroTelefonico[] numeri;
 	private int numeriMemorizzati;
 
