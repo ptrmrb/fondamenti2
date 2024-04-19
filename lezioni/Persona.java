@@ -1,5 +1,3 @@
-package lezioni;
-
 public class Persona 
     {
 

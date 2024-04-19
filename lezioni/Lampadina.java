@@ -1,5 +1,3 @@
-package lezioni;
-
 public class Lampadina {
     private boolean accesa;
 

@@ -1,5 +1,3 @@
-
-
 public class Lezione0503 {
     public static void main(String[] args)
     {
@@ -37,7 +35,7 @@ public class Lezione0503 {
                 /*if (posizioneLibera == numeroPositivi)
                     break;*/
             }
-
+        
         return ret;
         }
 

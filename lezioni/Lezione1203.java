@@ -1,5 +1,3 @@
-package lezioni;
-
 import terminale.*;
 
 public class Lezione1203 

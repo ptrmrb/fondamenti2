@@ -1,5 +1,3 @@
-package lezioni;
-
 import terminale.*;
 import java.util.*;
 
