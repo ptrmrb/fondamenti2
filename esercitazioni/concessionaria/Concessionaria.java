@@ -40,7 +40,7 @@
      public void eliminaAuto(Automobile a) 
      {	magazzino.remove(a);
      }
-     
+      
      // stampare tutte le auto;
      public void stampaAutoMagazzino() 
      {	for(Automobile a: magazzino)
@@ -55,23 +55,26 @@
          return somma;
      }
      
-     // trovare la casa produttrice pi� ricorrente;
-     public String casaPiuRicorrente() 
-     {	ArrayList<String> caseProduttrici = estraiCase();
-         String casaPiuRicorrente = caseProduttrici.get(0);
-         int maxOcc = occorrenzeCasa(casaPiuRicorrente);
-         for(int i=1; i<caseProduttrici.size(); i++) 
-         {	String casa = caseProduttrici.get(i);
-             int numOcc = occorrenzeCasa(casa);
-             if(numOcc > maxOcc) 
-             {	casaPiuRicorrente = casa;
-                 maxOcc = numOcc;
-             }
+     // trovare la casa produttrice più ricorrente;
+     public String casaPiuRicorrente()
+     {	
+        ArrayList<String> caseProduttrici = estraiCase(); // array con le case produttrici
+         String casaPiuRicorrente = caseProduttrici.get(0); // assegna la prima casa come la più ricorrente momentaneamente
+         int maxOcc = occorrenzeCasa(casaPiuRicorrente); // conta le occorrenze della casa precedentemente assegnata
+
+         for(int i=1; i<caseProduttrici.size(); i++) // scorre le case
+         {	String casa = caseProduttrici.get(i); // prende la casa produttrice in indice "i"
+            int numOcc = occorrenzeCasa(casa); // salva le occorrenze della casa 
+
+            if(numOcc > maxOcc) // scambio
+            {	casaPiuRicorrente = casa;
+                maxOcc = numOcc;
+            }
          }
          return casaPiuRicorrente;
      }
      
-     private ArrayList<String> estraiCase() 
+     private ArrayList<String> estraiCase() // restituisce un array contenente tutte le case produttrici
      {	ArrayList<String> ris = new ArrayList<>();
          for(Automobile a: magazzino) 
          {	String casa = a.getCasaProduttrice();
@@ -81,7 +84,7 @@
          return ris;
      }
      
-     private int occorrenzeCasa(String casa) 
+     private int occorrenzeCasa(String casa) // conta le occorrenze di una casa nel magazzino
      {	int c = 0;
          for(Automobile a: magazzino)
              if(a.getCasaProduttrice().equals(casa)) 
@@ -99,7 +102,7 @@
          return ris;
      }
      
-     // trovare l'auto con la cilindrata pi� alta tra quelle con un prezzo superiore alla media dei prezzi delle auto;
+     // trovare l'auto con la cilindrata più alta tra quelle con un prezzo superiore alla media dei prezzi delle auto;
      public Automobile cilindrataAlta() 
      {	float media = mediaPrezzi();
          Automobile ris = null;

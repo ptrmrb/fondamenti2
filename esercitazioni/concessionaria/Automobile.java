@@ -15,6 +15,7 @@
      private float prezzo; // es. 12000
      private String numTelaio; // es. "ABC123456789"
      
+     // costruttore 
      public Automobile(String modello, String colore, String casaProduttrice, int cilindrata, float prezzo, String numTelaio) {
          this.modello = modello;
          this.colore = colore;
@@ -49,7 +50,7 @@
      }
      
  
-     public String toString() 
+     public String toString()
      {	return casaProduttrice + " " + modello + ", telaio " + numTelaio;
      }
      
