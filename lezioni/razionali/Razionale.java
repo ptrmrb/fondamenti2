@@ -1,13 +1,15 @@
 package razionali;
 
-public class Razionale 
+public class Razionale implements Comparable<Razionale> 
 {	// Denominatore sempre positivo
 	// Sempre ridotto ai minimi termini
 	private int numeratore;
 	private int denominatore;
 	
 	public Razionale(int numeratore, int denominatore)
-	{	this.numeratore = numeratore;
+	{	if(denominatore == 0)
+			throw new EccezioneDenominatoreZero();
+		this.numeratore = numeratore;
 		this.denominatore = denominatore;
 		if(denominatore < 0)
 		{	this.numeratore *= -1;
@@ -121,11 +123,40 @@ public class Razionale
 		return ret;
 	}
 	
-	public static Razionale prodotto( Razionale x, Razionale y)
-	{
-		Razionale r = new Razionale(x);
-		ret.moltiplica()
-
+	public static Razionale prodotto(Razionale x, Razionale y)
+	{	Razionale ret = new Razionale(x);
+		ret.moltiplica(y);
+		return ret;		
 	}
-
+	
+	public static Razionale somma(Razionale x, Razionale y)
+	{	Razionale ret = new Razionale(x);
+		ret.aggiungi(y);
+		return ret;		
+	}
+	
+	public static Razionale differenza(Razionale x, Razionale y)
+	{	Razionale ret = new Razionale(x);
+		ret.sottrai(y);
+		return ret;		
+	}
+	
+	public static Razionale rapporto(Razionale x, Razionale y)
+	{	Razionale ret = new Razionale(x);
+		ret.dividi(y);
+		return ret;		
+	}
+	
+	public int compareTo(Razionale r)
+	{	// se this < r, restituiamo -1
+		// se this > r, restituiamo +1
+		// se this = r, restituiamo 0
+		int sinistra = numeratore * r.denominatore;
+		int destra = r.numeratore * denominatore;
+		if(sinistra < destra)
+			return -1;
+		if(sinistra > destra)
+			return 1;
+		return 0;
+	}
 }

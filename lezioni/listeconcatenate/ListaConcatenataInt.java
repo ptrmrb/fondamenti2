@@ -68,6 +68,58 @@ public class ListaConcatenataInt
 			aggiungiInCoda(v);
 	}
 	
+	public ArrayList<Integer> adArrayList()
+	{	ArrayList<Integer> ret = new ArrayList<>();
+		for(NodoInt corrente = testa; corrente != null; 
+				corrente = corrente.getSuccessivo())
+			ret.add(corrente.getInfo());
+		return ret;
+	}
+	
+	public LinkedList<Integer> aLinkedList()
+	{	LinkedList<Integer> ret = new LinkedList<>();
+		for(NodoInt corrente = testa; corrente != null; 
+				corrente = corrente.getSuccessivo())
+			ret.add(corrente.getInfo());
+		return ret;
+	}
+	
+	public int[] adArray()
+	{	if(eVuota())
+			throw new EccezioneListaVuota();
+		int[] ret = new int[lunghezza];
+		int posLibera = 0;
+		for(NodoInt corrente = testa; corrente != null; 
+				corrente = corrente.getSuccessivo())
+		{	ret[posLibera] = corrente.getInfo();
+			posLibera++;			
+		}
+		return ret;
+	}
+	
+	public ListaConcatenataInt listaInvertita()
+	{	ListaConcatenataInt ret = new ListaConcatenataInt();
+		for(NodoInt corrente = testa; corrente != null; 
+				corrente = corrente.getSuccessivo())
+			ret.aggiungiInTesta(corrente.getInfo());
+		return ret;
+	}
+	
+	public int indiceDi(int valore)
+	{	int i = 0;
+		for(NodoInt corrente = testa; corrente != null; 
+			corrente = corrente.getSuccessivo())
+		{	if(corrente.haInfo(valore))
+				return i;
+			i++;
+		}
+		return -1;
+	}
+	
+	public boolean contiene(int valore)
+	{	return indiceDi(valore) != -1;
+	}
+	
 	private void inizializza()
 	{	testa = null;
 		coda = null;
@@ -114,5 +166,5 @@ public class ListaConcatenataInt
 		}
 		ret += "]";
 		return ret;
-	}	
+	}
 }
