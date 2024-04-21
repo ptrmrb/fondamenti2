@@ -79,7 +79,7 @@
          for(Automobile a: magazzino) 
          {	String casa = a.getCasaProduttrice();
              if(!ris.contains(casa))
-                 ris.add(casa);
+                ris.add(casa);
          }
          return ris;
      }

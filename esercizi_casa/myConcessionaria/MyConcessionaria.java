@@ -55,6 +55,48 @@ public class MyConcessionaria {
         }
         return somma;
     }
+
+    // trovare la casa produttrice più ricorrente;
+    public String casaRicorrente()
+    {
+        ArrayList<String> caseProduttrici = estraiCase();
+        String casaPiuRicorrente = caseProduttrici.get(0);
+        int maxOccorrenze = occorrenzeCasa(casaPiuRicorrente);
+
+        for(int i=1; i<caseProduttrici.size(); i++) // scorre le case
+         {	String casa = caseProduttrici.get(i); // prende la casa produttrice in indice "i"
+            int numOcc = occorrenzeCasa(casa); // salva le occorrenze della casa 
+
+            if(numOcc > maxOccorrenze) // scambio
+            {	casaPiuRicorrente = casa;
+                maxOccorrenze = numOcc;
+            }
+         }
+         return casaPiuRicorrente;
+    }
+
+    private ArrayList<String> estraiCase()
+    {
+        ArrayList<String> ris = new ArrayList<>(); 
+        for( MyAutomobile a: magazzino)
+        {
+            String casa = a.getCasaProduttrice();
+            if(!ris.contains(casa))
+                ris.add(casa);
+        }
+        return ris;
+    }
+
+    private int occorrenzeCasa(String casa)
+    {
+        int occorrenze = 0;
+        for( MyAutomobile a: magazzino)
+            if(a.getCasaProduttrice().equals(casa))
+                occorrenze++;
+        return occorrenze; 
+
+    }
+
     
 
             
