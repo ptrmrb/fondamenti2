@@ -104,6 +104,12 @@ public class ListaConcatenataInt
 			ret.aggiungiInTesta(corrente.getInfo());
 		return ret;
 	}
+
+	public int get (int i)
+	{
+		if ( i < 0 || i >= lunghezza )
+
+	}
 	
 	public int indiceDi(int valore)
 	{	int i = 0;
@@ -167,4 +173,39 @@ public class ListaConcatenataInt
 		ret += "]";
 		return ret;
 	}
+	// costruttore per copia
+	public ListaConcatenataInt(ListaConcatenataInt l)
+	{	
+		inizializza();
+		for( NodoInt corrente = l.testa; corrente != null; corrente = corrente.getSuccessivo() ) // fa il gitro di tutti gli elementi della lista l
+			aggiungiInCoda(corrente.getInfo());
+	}
+
+	// equals
+	public boolean equals(Object o)
+	{
+		if ( o == null )
+			return false; 
+		if ( o == this )
+			return true;
+		if (!( o instanceof ListaConcatenataInt ))
+			return false; 
+		
+		ListaConcatenataInt l = (ListaConcatenataInt)o;
+		if ( lunghezza != l.lunghezza )
+			return false;
+
+		NodoInt corrente = testa; 
+		NodoInt correnteL = l.testa;
+
+		while ( corrente != null ) // finchè non trova l'ultimo nodo
+		{	if(corrente.getInfo() != correnteL.getInfo())
+				return false;
+			corrente = corrente.getSuccessivo();
+			correnteL = correnteL.getSuccessivo();
+		}
+		return true; 
+	}
+
+	
 }
