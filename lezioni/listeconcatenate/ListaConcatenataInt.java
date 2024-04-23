@@ -108,6 +108,11 @@ public class ListaConcatenataInt
 	public int get (int i)
 	{
 		if ( i < 0 || i >= lunghezza )
+			throw new EccezioneIndiceNonValido();
+		NodoInt corrente = testa; 
+		for (k = 1; k <= 1; k++ )
+			corrente = corrente.getSuccessivo();
+		return corrente.getInfo();
 
 	}
 	
@@ -206,6 +211,58 @@ public class ListaConcatenataInt
 		}
 		return true; 
 	}
+
+	public void rimuoviTesta()
+	{
+		if(eVuota())
+			throw new EccezioneListaVuota();
+		if(lunghezza == 1)
+			svuota();
+		else
+		{
+			testa = testa.getSuccessivo(); // spostiamo il puntatore al nodo successivo e quindi viene eliminato automaticamente
+			lunghezza --; 
+		}
+	}
+
+	public void rimuoviCoda()
+	{	// controlliamo che il successivo dell'elemento sia la coda
+		for( NodoInt corrente = l.testa; corrente != null; corrente = corrente.getSuccessivo() )
+			if (corrente.equals(l.coda))
+				l.coda = // TODO 
+
+	}
+
+	// esercizi ricorsivi simili a quelli dell'esame 
+
+	private int sommaDa(NodoInt n)
+	{
+		if ( n == null )
+			return 0;
+		return n.getInfo() + sommaDa( n.getSuccessivo() );
+	}
+
+	public int somma()
+	{
+		return sommaDa(testa);
+	}
+
+	// dato un valore restituire quante volte il valore compare nella lista
+
+	private int contaDa( NodoInt n , int valore )
+	{
+		if ( n == null )
+			return 0;
+		if ( n.haInfo(valore) ) // n.getInfo == valore 
+			return 1 + contaDa( n.getSuccessivo(), valore );
+		return contaDa(n.getSuccessivo(), valore);
+	}
+	// ALTERNATIVA: return (n.haInfo(valore) ? 1:0) + contaDa(n.getSuccessivo(), valore);
+
+	public int conta(int valore)
+	{
+		return contaDa(testa, valore);
+	} 
 
 	
 }
