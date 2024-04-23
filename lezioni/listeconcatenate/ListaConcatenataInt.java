@@ -50,6 +50,13 @@ public class ListaConcatenataInt
 	{	inizializza();
 	}
 	
+	public ListaConcatenataInt(ListaConcatenataInt l)
+	{	inizializza();
+		for(NodoInt corrente = l.testa; corrente != null;
+				corrente = corrente.getSuccessivo())
+			aggiungiInCoda(corrente.getInfo());
+	}
+	
 	public ListaConcatenataInt(int[] a)
 	{	inizializza();
 		for(int v : a)
@@ -66,6 +73,27 @@ public class ListaConcatenataInt
 	{	inizializza();
 		for(int v : a)
 			aggiungiInCoda(v);
+	}
+	
+	public boolean equals(Object o)
+	{	if(o == null)
+			return false;
+		if(o == this)
+			return true;
+		if(!(o instanceof ListaConcatenataInt))
+			return false;
+		ListaConcatenataInt l = (ListaConcatenataInt)o;
+		if(lunghezza != l.lunghezza)
+			return false;
+		NodoInt corrente = testa;
+		NodoInt correnteL = l.testa;
+		while(corrente != null)
+		{	if(corrente.getInfo() != correnteL.getInfo())
+				return false;
+			corrente = corrente.getSuccessivo();
+			correnteL = correnteL.getSuccessivo();
+		}
+		return true;
 	}
 	
 	public ArrayList<Integer> adArrayList()
@@ -104,16 +132,14 @@ public class ListaConcatenataInt
 			ret.aggiungiInTesta(corrente.getInfo());
 		return ret;
 	}
-
-	public int get (int i)
-	{
-		if ( i < 0 || i >= lunghezza )
+	
+	public int get(int i)
+	{	if(i < 0 || i >= lunghezza)
 			throw new EccezioneIndiceNonValido();
-		NodoInt corrente = testa; 
-		for (k = 1; k <= 1; k++ )
+		NodoInt corrente = testa;
+		for(int k = 1; k <= i; k++)
 			corrente = corrente.getSuccessivo();
-		return corrente.getInfo();
-
+		return corrente.getInfo();		
 	}
 	
 	public int indiceDi(int valore)
@@ -167,6 +193,40 @@ public class ListaConcatenataInt
 		lunghezza++;
 	}
 	
+	public void rimuoviTesta()
+	{	if(eVuota())
+			throw new EccezioneListaVuota();
+		if(lunghezza == 1)
+			svuota();
+		else
+		{	testa = testa.getSuccessivo();
+			lunghezza--;
+		}
+	}
+
+	public void rimuoviCoda() 
+	{
+		if (eVuota()) 
+		{	throw new EccezioneListaVuota();
+		}
+		
+		if (lunghezza == 1) // se c'è un solo elemento nella lista
+		{	svuota();
+			return;
+		}
+	
+		NodoInt penultimo = testa; // trova il penultimo nodo
+		while (penultimo.getSuccessivo() != coda)
+		{	penultimo = penultimo.getSuccessivo();
+		}
+		
+		penultimo.setSuccessivo(null); // rimuovi il riferimento alla coda e impostala a null
+		coda = penultimo;
+		
+		lunghezza--; // decrementa la lunghezza della lista
+	}
+	
+
 	public String toString()
 	{	String ret = "[";
 		for(NodoInt corrente = testa; corrente != null;
@@ -178,91 +238,52 @@ public class ListaConcatenataInt
 		ret += "]";
 		return ret;
 	}
-	// costruttore per copia
-	public ListaConcatenataInt(ListaConcatenataInt l)
-	{	
-		inizializza();
-		for( NodoInt corrente = l.testa; corrente != null; corrente = corrente.getSuccessivo() ) // fa il gitro di tutti gli elementi della lista l
-			aggiungiInCoda(corrente.getInfo());
-	}
-
-	// equals
-	public boolean equals(Object o)
-	{
-		if ( o == null )
-			return false; 
-		if ( o == this )
-			return true;
-		if (!( o instanceof ListaConcatenataInt ))
-			return false; 
-		
-		ListaConcatenataInt l = (ListaConcatenataInt)o;
-		if ( lunghezza != l.lunghezza )
-			return false;
-
-		NodoInt corrente = testa; 
-		NodoInt correnteL = l.testa;
-
-		while ( corrente != null ) // finchè non trova l'ultimo nodo
-		{	if(corrente.getInfo() != correnteL.getInfo())
-				return false;
-			corrente = corrente.getSuccessivo();
-			correnteL = correnteL.getSuccessivo();
-		}
-		return true; 
-	}
-
-	public void rimuoviTesta()
-	{
-		if(eVuota())
-			throw new EccezioneListaVuota();
-		if(lunghezza == 1)
-			svuota();
-		else
-		{
-			testa = testa.getSuccessivo(); // spostiamo il puntatore al nodo successivo e quindi viene eliminato automaticamente
-			lunghezza --; 
-		}
-	}
-
-	public void rimuoviCoda()
-	{	// controlliamo che il successivo dell'elemento sia la coda
-		for( NodoInt corrente = l.testa; corrente != null; corrente = corrente.getSuccessivo() )
-			if (corrente.equals(l.coda))
-				l.coda = // TODO 
-
-	}
-
-	// esercizi ricorsivi simili a quelli dell'esame 
-
-	private int sommaDa(NodoInt n)
-	{
-		if ( n == null )
-			return 0;
-		return n.getInfo() + sommaDa( n.getSuccessivo() );
-	}
-
-	public int somma()
-	{
-		return sommaDa(testa);
-	}
-
-	// dato un valore restituire quante volte il valore compare nella lista
-
-	private int contaDa( NodoInt n , int valore )
-	{
-		if ( n == null )
-			return 0;
-		if ( n.haInfo(valore) ) // n.getInfo == valore 
-			return 1 + contaDa( n.getSuccessivo(), valore );
-		return contaDa(n.getSuccessivo(), valore);
-	}
-	// ALTERNATIVA: return (n.haInfo(valore) ? 1:0) + contaDa(n.getSuccessivo(), valore);
-
-	public int conta(int valore)
-	{
-		return contaDa(testa, valore);
-	} 
-
 	
+	private int sommaDa(NodoInt n)
+	{	if(n == null)
+			return 0;
+		return n.getInfo() + sommaDa(n.getSuccessivo());
+	}
+	
+	public int somma()
+	{	return sommaDa(testa);		
+	}
+	
+	private int contaDa(NodoInt n, int valore)
+	{	if(n == null)
+			return 0;
+		if(n.haInfo(valore))
+			return 1 + contaDa(n.getSuccessivo(),valore);
+		return contaDa(n.getSuccessivo(),valore);
+		// ALTERNATIVA DAL SECONDO IF IN POI:
+		// return (n.haInfo(valore) ? 1 : 0) + contaDa(n.getSuccessivo(),valore);
+	}
+	
+	public int conta(int valore)
+	{	return contaDa(testa,valore);		
+	}
+	
+	private int minimoDa(NodoInt n)
+	{	if(n.getSuccessivo() == null)
+			return n.getInfo();
+		return Math.min(n.getInfo(), minimoDa(n.getSuccessivo()));
+	}
+	
+	public int minimo()
+	{	if(eVuota())
+			throw new EccezioneListaVuota();		
+		return minimoDa(testa);		
+	}
+	
+	private int massimoDa(NodoInt n)
+	{	if(n.getSuccessivo() == null)
+			return n.getInfo();
+		return Math.max(n.getInfo(), massimoDa(n.getSuccessivo()));
+	}
+	
+	public int massimo()
+	{	if(eVuota())
+			throw new EccezioneListaVuota();		
+		return massimoDa(testa);		
+	}
 }
