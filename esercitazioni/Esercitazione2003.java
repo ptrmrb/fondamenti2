@@ -19,17 +19,17 @@ public class Esercitazione2003 {
     // scrivi un metodo alternati che riceve in input un array l di interi e restituisce true
     // se l'arraycontiene valori alternati pari e dispari
 
-    public static boolean alternati (int[] l){
-
+    public static boolean alternati(int[] l) {
         boolean precPari = (l[0] % 2) == 0;
-        for  (int i = 1; i < l.length; i ++){
-            if((l[i] % 2 == 0 && precPari) || (l[i] % 2 == 1 && !precPari));
+        for (int i = 1; i < l.length; i++) {
+            if ((l[i] % 2 == 0 && precPari) || (l[i] % 2 == 1 && !precPari)) {
                 return false;
+            }
             precPari = !precPari;
         }
-        
         return true;
     }
+    
 
 
 /*
