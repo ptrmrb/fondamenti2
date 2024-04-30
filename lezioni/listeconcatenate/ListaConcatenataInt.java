@@ -334,4 +334,6 @@ public class ListaConcatenataInt
 	}
 
 	// esempio di esercizio, rimuoviTutti(elemento)
+
+
 }
