@@ -2,50 +2,10 @@ package autostrade;
 
 import java.util.*;
 
-public class GestioneReteAS 
-{	private static ArrayList<Citta> citta = new ArrayList<>();
-	private static ArrayList<Tratta> tratte = new ArrayList<>();
-	private static ArrayList<Autoveicolo> autoveicoli = new ArrayList<>();
-	private static ArrayList<Percorrenza> percorrenze = new ArrayList<>();
-	
-	public static void aggiungiCitta(Citta c)
-	{	citta.add(c);		
-	}
-	
-	public static void aggiungiTratta(Tratta t)
-	{	tratte.add(t);		
-	}
-	
-	public static void aggiungiAutoveicolo(Autoveicolo a)
-	{	autoveicoli.add(a);		
-	}
-	
-	public static void aggiungiPercorrenza(Percorrenza p)
-	{	percorrenze.add(p);		
-	}
-	
-	public static int accessi(Citta c)
-	{	int cont = 0;
-		for(Percorrenza p : percorrenze)
-			if(p.getTratta().getCittaDestinazione().equals(c))
-				cont++;
-		return cont;		
-	}
-	
-	public static ArrayList<Autoveicolo> trovaAutoveicoli(int x)
-	{	ArrayList<Autoveicolo> ret = new ArrayList<>();
-		for(Autoveicolo a : autoveicoli)
-			if(!haPercorsoTrattaPiuLunga(a,x))
-				ret.add(a);
-		return ret;		
-	}
-	
-	private static boolean haPercorsoTrattaPiuLunga(Autoveicolo a, int x)
-	{	for(Percorrenza p : percorrenze)
-			if(p.getAutoveicolo().equals(a) && p.getTratta().getDistanza() > x)
-					return true;
-		return false;
-	}
+private static ArrayList<Citta> citta = new ArrayList<>;
+private ArrayList<Tratta> tratte = new ArrayList<>;
+private ArrayList<Autoveicolo> autoveicoli = new ArrayList<>; 
+private ArrayList<Percorrenza> percorrenze = new ArrayList<>;
 
 	public static Autoveicolo trovaAutoFrequente(int d1, int d2)
 	{	Autoveicolo ret = autoveicoli.get(0);
