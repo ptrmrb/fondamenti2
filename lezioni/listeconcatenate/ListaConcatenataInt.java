@@ -225,6 +225,52 @@ public class ListaConcatenataInt
 		
 		lunghezza--; // decrementa la lunghezza della lista
 	}
+
+	public void rimuovi(int indice)
+	{
+		if(indice < 0 || indice >= lunghezza )
+			throw new EccezioneIndiceNonValido(); // se l'indirizzo non è valido 
+		if ( indice == 0 )
+		{	rimuoviTesta();
+			return;
+		}
+		if ( indice == lunghezza - 1 )
+		{	rimuoviCoda();
+			return;
+		}
+
+		// per rimuovere un elemento mi devo fermare all'indice prima in modo tale da poterlo eliminare
+		for ( int i = 1; i < indice; i ++)
+			corrente=corrente.getSuccessivo();
+		corrente.setSuccessivo(corrente.getSuccessivo().getSuccessivo());
+		lunghezza --;
+
+	}
+
+	public void rimuoviPrimo(int valore) // 
+	{	// alternativa rimuovi(indiceDi(valore));
+		if ( eVuota() )
+			return;
+
+		if( testa.haInfo(valore)) // è lo stesso di getInfo == valore 
+		{
+			rimuoviTesta();
+			return;
+		}
+		for (NodoInt corrente = testa; corrente != null; corrente = corrente.getSuccessivo())
+		{
+			NodoInt successivo = corrente.getSuccessivo();
+			if ( successivo != null && successivo.haInfo(valore) )
+			{
+				corrente.setSuccessivo(successivo.getSuccessivo());
+				if ( successivo == coda )
+					coda = corrente;
+				lunghezza--;
+				return true;
+			}
+		}
+		return false; 
+	}
 	
 
 	public String toString()
@@ -286,4 +332,6 @@ public class ListaConcatenataInt
 			throw new EccezioneListaVuota();		
 		return massimoDa(testa);		
 	}
+
+	// esempio di esercizio, rimuoviTutti(elemento)
 }
