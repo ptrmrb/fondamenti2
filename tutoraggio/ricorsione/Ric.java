@@ -24,14 +24,14 @@ le operazioni di somma sottrazione e gli operatori relazionali */
 public static int divisioneInt( int x , int y ){
 
     if ( y > x ) return 0;
-
-    if ( x == y ) return 1;
-
     if ( x > y ){
         return 1 + divisione( x - y, y ); 
     }
-
 }
 
+public static int sommaCompresi( int da, int a )
+{
 
+    
+}
 
