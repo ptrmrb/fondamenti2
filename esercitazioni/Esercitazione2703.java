@@ -31,15 +31,18 @@ public class Esercitazione2703
             }
     }
 
-    private static boolean rigaTuttiDispari(int[][]m , int riga)
-    {
-        for( int j = 0; j<m.length; j++)
-        {   if ( m[riga][j] % 2 == 0 )
-                return false;
-            return true; 
+    private static boolean rigaTuttiDispari(int[][] m, int riga) {
+    // Check if the specified row contains all odd numbers
+    for (int j = 0; j < m[riga].length; j++) {
+        if (m[riga][j] % 2 == 0) {
+            // If any number in the row is even, return false immediately
+            return false;
         }
-        return ris;
     }
+    // If we have checked all numbers and found them all to be odd, return true
+    return true;
+}
+
     
 }
 
