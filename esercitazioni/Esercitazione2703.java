@@ -1,36 +1,38 @@
 import terminale.*;
 
-public class Esercitazione2703 
+public static class Esercitazione2703 
 {
     /* Si scriva un metodo filtraMatrice che riceve in input una
     matrice di interi e restituisce un array contenente tutti gli 
     elementi presenti sulle righe di indice pari che contengono solo
     elementi dispari*/
 
-    public static int[] filtraMatrice (int[][] m)
-    {
-        
-        int dim = 0;
-        int[] ret = new int [dim]; // utilizzare quando non conosciamo la dimensione di qualche ogetto
+    public static int[] filtraMatrice(int[][] m) {
         int numRigheOk = 0;
-
-        for ( int i = 0; i<m.length; i+=2) // incrementiamo di 2 in modo tale da controllare le righe pari, ovvero il passo
-            if ( rigaTuttiDispari(m,i) )
-                numRigheOk ++; 
-        
-        dim = numRigheOk * m[0].length;
-        int[] ris = new int[dim];
-        int pos = 0;
-
-        for( int i = 0; i<m.length; i+=2)
-            if( rigaTuttiDispari(m,i) )
-            {   for ( int j = 0; i<m[0].length; j++ )
-                {   ris[pos] = m[i][j];
-                    pos++;
-                } 
+    
+        // Contare il numero di righe pari con tutti elementi dispari
+        for (int i = 0; i < m.length; i += 2) {
+            if (rigaTuttiDispari(m, i)) {
+                numRigheOk++;
             }
+        }
+    
+        int[] ris = new int[numRigheOk * m[0].length];
+        int pos = 0;
+    
+        // Riempire l'array con gli elementi delle righe pari con tutti elementi dispari
+        for (int i = 0; i < m.length; i += 2) {
+            if (rigaTuttiDispari(m, i)) {
+                for (int j = 0; j < m[i].length; j++) {
+                    ris[pos] = m[i][j];
+                    pos++;
+                }
+            }
+        }
+    
+        return ris;
     }
-
+    
     private static boolean rigaTuttiDispari(int[][] m, int riga) {
     // Check if the specified row contains all odd numbers
     for (int j = 0; j < m[riga].length; j++) {
@@ -42,18 +44,16 @@ public class Esercitazione2703
     // If we have checked all numbers and found them all to be odd, return true
     return true;
 }
-
     
 }
 
-public static void main( String[] args)
-{   int[][] m = {{1,1,3,1},
-                  {2,2,1,3}, 
-                  {15,1,7,9}};
-    int[] x = filtraMatrice(m);
-
+public static void main(String[] args) {
+    Esercitazione2703 esercitazione = new Esercitazione2703();
+    int[][] m = {{1, 1, 3, 1}, {2, 2, 1, 3}, {15, 1, 7, 9}};
+    int[] x = esercitazione.filtraMatrice(m);
     Terminale.stampaMatrice(x);
 }
+
 
 // data una matrice di interi non negativi restituire l'indice
 // di riga con somma più alto 
