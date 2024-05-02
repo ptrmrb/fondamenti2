@@ -1,3 +1,5 @@
+package lezioni; 
+
 public class Biglietto {
 
     private int numero;

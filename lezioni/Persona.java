@@ -1,6 +1,7 @@
+package lezioni; 
+
 public class Persona 
     {
-
     private String nome;
     private String cognome; 
     private int annoNascita;

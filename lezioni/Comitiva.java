@@ -1,3 +1,5 @@
+package lezioni; 
+
 import java.util.*;
 
 public class Comitiva {
