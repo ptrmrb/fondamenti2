@@ -1,5 +1,6 @@
 package listeconcatenate;
 
+import terminale.*;
 import java.util.*;
 
 class NodoInt
@@ -203,76 +204,64 @@ public class ListaConcatenataInt
 			lunghezza--;
 		}
 	}
-
-	public void rimuoviCoda() 
-	{
-		if (eVuota()) 
-		{	throw new EccezioneListaVuota();
-		}
-		
-		if (lunghezza == 1) // se c'è un solo elemento nella lista
-		{	svuota();
-			return;
-		}
 	
-		NodoInt penultimo = testa; // trova il penultimo nodo
-		while (penultimo.getSuccessivo() != coda)
-		{	penultimo = penultimo.getSuccessivo();
-		}
-		
-		penultimo.setSuccessivo(null); // rimuovi il riferimento alla coda e impostala a null
-		coda = penultimo;
-		
-		lunghezza--; // decrementa la lunghezza della lista
+	public void rimuoviCoda()
+	{	if(eVuota())
+			throw new EccezioneListaVuota();
+		if(lunghezza == 1)
+			svuota();
+		else
+		{	for(NodoInt corrente = testa; corrente != null;
+					corrente = corrente.getSuccessivo())
+				if(corrente.getSuccessivo() == coda)
+				{	corrente.setSuccessivo(null);
+					coda = corrente;
+				}
+			lunghezza--;
+		}	
 	}
-
+	
 	public void rimuovi(int indice)
-	{
-		if(indice < 0 || indice >= lunghezza )
-			throw new EccezioneIndiceNonValido(); // se l'indirizzo non è valido 
-		if ( indice == 0 )
+	{	if(indice < 0 || indice >= lunghezza)
+			throw new EccezioneIndiceNonValido();
+		if(indice == 0)
 		{	rimuoviTesta();
 			return;
 		}
-		if ( indice == lunghezza - 1 )
+		if(indice == lunghezza - 1)
 		{	rimuoviCoda();
 			return;
 		}
-
-		// per rimuovere un elemento mi devo fermare all'indice prima in modo tale da poterlo eliminare
-		for ( int i = 1; i < indice; i ++)
-			corrente=corrente.getSuccessivo();
+		NodoInt corrente = testa;
+		for(int i = 1; i < indice; i++)
+			corrente = corrente.getSuccessivo();
 		corrente.setSuccessivo(corrente.getSuccessivo().getSuccessivo());
-		lunghezza --;
-
+		lunghezza--;
 	}
-
-	public void rimuoviPrimo(int valore) // 
-	{	// alternativa rimuovi(indiceDi(valore));
-		if ( eVuota() )
-			return;
-
-		if( testa.haInfo(valore)) // è lo stesso di getInfo == valore 
-		{
-			rimuoviTesta();
-			return;
+	
+	public boolean rimuoviPrimo(int valore)
+	{	// ALTERNATIVA:
+		//rimuovi(indiceDi(valore));
+		if(eVuota())
+			return false;
+		if(testa.haInfo(valore))
+		{	rimuoviTesta();
+			return true;
 		}
-		for (NodoInt corrente = testa; corrente != null; corrente = corrente.getSuccessivo())
-		{
-			NodoInt successivo = corrente.getSuccessivo();
-			if ( successivo != null && successivo.haInfo(valore) )
-			{
-				corrente.setSuccessivo(successivo.getSuccessivo());
-				if ( successivo == coda )
+		for(NodoInt corrente = testa; corrente != null;
+					corrente = corrente.getSuccessivo())
+		{	NodoInt successivo = corrente.getSuccessivo();
+			if(successivo != null && successivo.haInfo(valore))
+			{	corrente.setSuccessivo(successivo.getSuccessivo());
+				if(successivo == coda)
 					coda = corrente;
 				lunghezza--;
 				return true;
 			}
 		}
-		return false; 
+		return false;
 	}
 	
-
 	public String toString()
 	{	String ret = "[";
 		for(NodoInt corrente = testa; corrente != null;
@@ -333,7 +322,21 @@ public class ListaConcatenataInt
 		return massimoDa(testa);		
 	}
 
-	// esempio di esercizio, rimuoviTutti(elemento)
 
-	public 
+	// esercizi tutoraggio 
+	public void stampaInversa(){
+        stampaInversa(testa);
+    }
+
+    private void stampaInversa(NodoInt n){
+        if ( n == null )
+            return; // importante altrimenti andrebbe in errore perche chiami 
+					//un metodo su un istanza che non esiste
+
+		stampaInversa(n.getSuccessivo());
+	
+		Terminale.stampa(n.getInfo());// stampa in ordine giusto
+
+	
+	}
 }
