@@ -340,8 +340,6 @@ public class ListaConcatenataInt
 
 	// esercizio appello fatto con pugliese
 
-
-
 	// esercizio tutoraggio 
 
 	/* Si arricchisca la classe ListaConcatenataInt sviluppata durante il corso con un metodo
@@ -355,18 +353,26 @@ public class ListaConcatenataInt
 		return verificaListaDa(testa);
 	}
 
-	private boolean verificaListaDa( NodoInt n )
+	private boolean verificaLista( NodoInt n )
 	{
 		if ( n == null )
-			//return 
+			return 0;
 
-		if ( corrente < 0 )
-			int corrente = n.getInfo();
+		int successivi = verificaLista(n.getSuccessivo());
 
+		if (successivi < 0)
+			return -1; 
 		
+		if ( n.getInfo() < 0 )
+			if ( -1 * n.getInfo() != successivi )
+				return -1;
+			return successivi;
 
-			
+		if ( n.getInfo()%2 == 0 )
+			return successivi + 1;
+		return successivi;
+
+		//return successivi + 1 - n.getInfo()%2;
 
 	}
-	
 }
