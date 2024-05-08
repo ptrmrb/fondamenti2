@@ -375,4 +375,32 @@ public class ListaConcatenataInt
 		//return successivi + 1 - n.getInfo()%2;
 
 	}
+
+
+	public int picchi( ){
+		return picchiDa(testa);
+	}
+
+	private int picchiDa(NodoInt n ){
+		if ( n.getSuccessivo().getSuccessivo() == null ){
+			return 0;
+		}
+
+		int succ =  n.getSuccessivo().getInfo();
+		int corr = n.getInfo();
+		int succ2 = n.getSuccessivo().getSuccessivo().getInfo();
+
+		if ( corr < succ/2 )
+			if ( succ2 < succ/2 )
+				return 1 + picchiDa(n.getSuccessivo());
+			return picchiDa(n.getSuccessivo());
+	}
+
+
+	public static void main(String[] args) {
+		int[] l = { 4 , 9, 12, 36, 16, 23, 87, 34, 18, 64, 33};
+		ListaConcatenataInt l1 = new ListaConcatenataInt(l);
+
+		Terminale.stampa(l1.picchi());
+	}
 }
