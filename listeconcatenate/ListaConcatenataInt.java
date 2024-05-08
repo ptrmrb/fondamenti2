@@ -335,8 +335,38 @@ public class ListaConcatenataInt
 
 		stampaInversa(n.getSuccessivo());
 	
-		Terminale.stampa(n.getInfo());// stampa in ordine giusto
-
-	
+		Terminale.stampa(n.getInfo());// stampa in ordine giusto	
 	}
+
+	// esercizio appello fatto con pugliese
+
+
+
+	// esercizio tutoraggio 
+
+	/* Si arricchisca la classe ListaConcatenataInt sviluppata durante il corso con un metodo
+	verificaLista() che restituisce True se e solo se tutti i numeri negativi della lista 
+	(denominati di controllo) indicano in valore assoluto quanti numeri pari li succedono,
+	ad esempio se la lista è [-5, 20, -4, 10, 62, 1, -2, 13, 36, 6, 1] e allora la funzione
+	restituisce True. Il metodo dovrà essere ricorsivo o invocare un opportuno metodo
+	ricorsivo sulla classe NodoInt. */
+
+	public boolean verificaLista() {
+		return verificaListaDa(testa);
+	}
+
+	private boolean verificaListaDa( NodoInt n )
+	{
+		if ( n == null )
+			//return 
+
+		if ( corrente < 0 )
+			int corrente = n.getInfo();
+
+		
+
+			
+
+	}
+	
 }
