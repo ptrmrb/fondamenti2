@@ -336,6 +336,7 @@ public class ListaConcatenataInt
 					//un metodo su un istanza che non esiste
 
 		stampaInversa(n.getSuccessivo());
+<<<<<<< HEAD
 		Terminale.stampa(n.getInfo());
 	}
 
@@ -395,5 +396,75 @@ public class ListaConcatenataInt
 		
 		return firstEven(n.getSuccessivo(), indice + 1 );
 
+=======
+	
+		Terminale.stampa(n.getInfo());// stampa in ordine giusto	
+>>>>>>> 224e8fdb5ba3e7a516eeddd30e14fed48f5337fe
+	}
+
+	// esercizio appello fatto con pugliese
+
+	// esercizio tutoraggio 
+
+	/* Si arricchisca la classe ListaConcatenataInt sviluppata durante il corso con un metodo
+	verificaLista() che restituisce True se e solo se tutti i numeri negativi della lista 
+	(denominati di controllo) indicano in valore assoluto quanti numeri pari li succedono,
+	ad esempio se la lista è [-5, 20, -4, 10, 62, 1, -2, 13, 36, 6, 1] e allora la funzione
+	restituisce True. Il metodo dovrà essere ricorsivo o invocare un opportuno metodo
+	ricorsivo sulla classe NodoInt. */
+
+	public boolean verificaLista() {
+		return verificaListaDa(testa);
+	}
+
+	private boolean verificaLista( NodoInt n )
+	{
+		if ( n == null )
+			return 0;
+
+		int successivi = verificaLista(n.getSuccessivo());
+
+		if (successivi < 0)
+			return -1; 
+		
+		if ( n.getInfo() < 0 )
+			if ( -1 * n.getInfo() != successivi )
+				return -1;
+			return successivi;
+
+		if ( n.getInfo()%2 == 0 )
+			return successivi + 1;
+		return successivi;
+
+		//return successivi + 1 - n.getInfo()%2;
+
+	}
+
+
+	public int picchi( ){
+		return picchiDa(testa);
+	}
+
+	private int picchiDa(NodoInt n ){
+		if ( n.getSuccessivo().getSuccessivo() == null ){
+			return 0;
+		}
+
+		int succ =  n.getSuccessivo().getInfo();
+		int corr = n.getInfo();
+		int succ2 = n.getSuccessivo().getSuccessivo().getInfo();
+
+		if ( corr < succ/2 )
+			if ( succ2 < succ/2 )
+				return 1 + picchiDa(n.getSuccessivo());
+			return picchiDa(n.getSuccessivo());
+	}
+
+
+	public static void main(String[] args) {
+		int[] l = { 4 , 9, 12, 36, 16, 23, 87, 34, 18, 64, 33};
+		ListaConcatenataInt l1 = new ListaConcatenataInt(l);
+
+		Terminale.stampa(l1.picchi());
 	}
 }
