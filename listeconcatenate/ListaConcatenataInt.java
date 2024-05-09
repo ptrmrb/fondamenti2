@@ -336,7 +336,6 @@ public class ListaConcatenataInt
 					//un metodo su un istanza che non esiste
 
 		stampaInversa(n.getSuccessivo());
-<<<<<<< HEAD
 		Terminale.stampa(n.getInfo());
 	}
 
@@ -396,10 +395,6 @@ public class ListaConcatenataInt
 		
 		return firstEven(n.getSuccessivo(), indice + 1 );
 
-=======
-	
-		Terminale.stampa(n.getInfo());// stampa in ordine giusto	
->>>>>>> 224e8fdb5ba3e7a516eeddd30e14fed48f5337fe
 	}
 
 	// esercizio appello fatto con pugliese
