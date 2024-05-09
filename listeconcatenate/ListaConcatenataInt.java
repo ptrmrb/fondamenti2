@@ -324,19 +324,76 @@ public class ListaConcatenataInt
 
 
 	// esercizi tutoraggio 
-	public void stampaInversa(){
+	public void stampaInversa()
+	{
         stampaInversa(testa);
     }
 
-    private void stampaInversa(NodoInt n){
+    private void stampaInversa(NodoInt n)
+	{
         if ( n == null )
             return; // importante altrimenti andrebbe in errore perche chiami 
 					//un metodo su un istanza che non esiste
 
 		stampaInversa(n.getSuccessivo());
-	
-		Terminale.stampa(n.getInfo());// stampa in ordine giusto
+		Terminale.stampa(n.getInfo());
+	}
 
-	
+	public void pulisci(){
+		pulisci(testa);
+	}
+
+	private void pulisci(NodoInt n){
+		if ( n.getSuccessivo() == null )
+			return;
+
+		NodoInt succ = n.getSuccessivo();
+		if ( succ.getInfo() == n.getInfo() )
+
+		{	// aggiorniamo la coda
+			if ( succ == coda )
+				coda = n; // perche se stiamo per eliminare la coda serve un altra coda,
+						  // quindi la impostiamo al precedente
+
+			n.setSuccessivo((succ.getSuccessivo())); // invece di rimuoverlo spostiamo il puntatore al
+			lunghezza--;							 // successivo del successivo...
+			pulisci(n); // chiamata ricorsiva
+			return; 
+		}
+		pulisci(succ);
+	}
+
+	public int firstEven(){
+		return firstEven(testa);
+	}
+
+	private int firstEven(NodoInt n){
+		if ( n == null )
+			return -1;
+
+		int valore = n.getInfo(); 
+
+		if (valore % 2 == 0)
+			return indiceDi(valore);
+		
+		return firstEven(n.getSuccessivo());
+
+	}
+
+	public int firstEven1(){
+		return firstEven(testa, 0);
+	}
+
+	private int firstEven(NodoInt n, int indice){
+		if ( n == null )
+			return -1;
+			
+		int valore = n.getInfo(); 
+
+		if (valore % 2 == 0)
+			return indice;
+		
+		return firstEven(n.getSuccessivo(), indice + 1 );
+
 	}
 }

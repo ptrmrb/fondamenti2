@@ -31,13 +31,13 @@ public class banco_prova
 
          ListaConcatenataInt lista = new ListaConcatenataInt();
          
-        lista.aggiungiInCoda(10);
-        lista.aggiungiInCoda(11);
-        lista.aggiungiInCoda(12);
-        lista.aggiungiInCoda(13);
-        lista.aggiungiInCoda(14);
+         lista.aggiungiInCoda(1);
+         lista.aggiungiInCoda(2);
+        lista.aggiungiInCoda(1);
+        lista.aggiungiInCoda(3);
 
-        lista.stampaInversa();
+
+        Terminale.stampa(lista.firstEven());
 
         
          
