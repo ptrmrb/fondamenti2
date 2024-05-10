@@ -1,4 +1,4 @@
-package appelloSettembre;
+package Traccia20190909;
 
 public class Votazione {
 	private int codice;
