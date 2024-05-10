@@ -432,9 +432,7 @@ public class ListaConcatenataInt
 		return successivi;
 
 		//return successivi + 1 - n.getInfo()%2;
-
 	}
-
 
 	public int picchi( ){
 		return picchiDa(testa);

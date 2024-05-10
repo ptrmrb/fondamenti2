@@ -1,7 +1,6 @@
+package Traccia20190218;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Sistema {
     private ArrayList<Cliente> clienti;
@@ -19,12 +18,18 @@ public class Sistema {
      */
     public ArrayList<String> articoliCittà(String c){
         ArrayList<String> ret = new ArrayList<>();
-        for ( Cliente cl : clienti )
-            if( cl.getCitta()== c )
-                for ( Articolo ar : articoli )
-                    if ( ar.getClienti().contains(cl) )
-                        if ( !ret.contains(ar) )
-                            ret.add(ar.getCodice());
+        ArrayList<Cliente> clientiCitta = clientiCitta(c);
+        for(Articolo art : articoli)
+            if(art.getClienti().containsAll(clientiCitta))
+                ret .add(art.getCodice());
+        return ret ;
+    }
+
+    public ArrayList<Cliente> clientiCitta(String c){
+        ArrayList<Cliente> ret = new ArrayList<>();
+        for(Cliente cli: clienti)
+            if(cli.getCitta().equals(c))
+                ret.add(cli);
         return ret;
     }
 
@@ -37,19 +42,39 @@ public class Sistema {
      * messo in vendita nel periodo compreso tra la data d1 e la data d2.
      */
     public ArrayList<Cliente> acquirentiUnici(int d1, int d2){
-        return null;
+        ArrayList<Cliente> ret = new ArrayList<>();
+        for(Articolo a: articoli)
+            if(a.getData() >= d1 && a.getData() <=d2 && a.getClienti().size()==1 
+                && !ret.contains(a.getClienti().get(0)))
+                ret.add(a.getClienti().get(0));
+        return ret;
     }
 
     /**
      *
      * @param a
      * @param b
-     * @return la lista degli acquisti effettuati sia dal cliente a che dal cliente b (eventualmente insieme ad altri),
-     * ordinata (in senso decrescente) secondo la data di messa in vendita degli articoli.
-     */
+     * @return la lista degli acquisti effettuati sia dal cliente a che dal cliente b 
+     * (eventualmente insieme ad altri), ordinata (in senso decrescente) secondo la data
+     * di messa in vendita degli articoli.
+     * 
+     **/
     public ArrayList<Articolo> acquirentiComuni(Cliente a, Cliente b){
-        return null;
+        ArrayList<Articolo> ret = new ArrayList<>();
+        for (Articolo art : articoli) 
+            if (art.getClienti().contains(a) && art.getClienti().contains(b))
+                ret.add(art);
+        
+        ordinaDescrescente(ret);
+    	return ret;
     }
+    //ordinare senza compare to ordinaCrescenteInserimento
+    private void ordinaDescrescente(ArrayList<Articolo> lista) {
+		Collections.sort(lista);
+		Collections.reverse(lista);
+	}
+    
+
 
     public static void main(String[] args) {
 
