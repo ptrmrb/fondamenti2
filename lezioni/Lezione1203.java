@@ -27,7 +27,7 @@ public class Lezione1203
 
         Terminale.stampa(q.toString()); */
         
-        Lampadina l1 = new Lampadina();
+        //Lampadina l1 = new Lampadina();
 
         Lampadina l2 = new Lampadina();
         l2.premiBottone();

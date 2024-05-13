@@ -1,7 +1,6 @@
 package lezioni; 
 
 import terminale.*;
-import java.util.*;
 
 public class Lezione2103{
     public static void main (String[] args){

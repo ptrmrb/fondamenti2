@@ -95,7 +95,7 @@ public class Lezione1303
         c.add(10);
         c.add(20); // si occuperà poi il linguaggio a trasformarlo
 
-        int w = c.get(1); //  possiamo assegnare ad una variabile int
+        //int w = c.get(1); //  possiamo assegnare ad una variabile int
         // un valore integer proprio perchè c'è l' AUTO SPACCHETTAMENTO
 
         ArrayList<Integer> d = new ArrayList<>();

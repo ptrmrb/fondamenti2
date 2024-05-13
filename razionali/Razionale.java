@@ -1,4 +1,3 @@
-package razionali;
 
 public class Razionale implements Comparable<Razionale> 
 {	// Denominatore sempre positivo
