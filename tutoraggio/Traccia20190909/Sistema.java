@@ -17,8 +17,9 @@ public class Sistema {
     /**
      *
      * @param r
-     * @return i disegni di legge approvati soltanto con voti favorevoli espressi da parlamentari eletti in collegi
-     * della regione r.
+     * @return  i disegni di legge approvati soltanto con voti favorevoli espressi 
+     *          da parlamentari eletti in collegi
+     *          della regione r.
      */
     public ArrayList<DisegnoDiLegge> m1(String r){
         return null;
@@ -27,8 +28,9 @@ public class Sistema {
     /**
      *
      * @param p
-     * @return  l’elenco dei parlamentari del partito politico p che hanno espresso voto contrario su qualche disegno
-     * di legge proposto da almeno un parlamentare dello stesso partito p.
+     * @return  l’elenco dei parlamentari del partito politico p che hanno 
+     *          espresso voto contrario su qualche disegno
+     *          di legge proposto da almeno un parlamentare dello stesso partito p.
      */
     public ArrayList<Parlamentare> m2(String p){
         return null;
@@ -37,7 +39,9 @@ public class Sistema {
     /**
      *
      * @param p
-     * @return  l’elenco dei parlamentari che hanno espresso lo stesso voto di p per ogni disegno di legge.
+     * @return  l’elenco dei parlamentari che hanno espresso 
+     *          lo stesso voto di p per
+     *          ogni disegno di legge.
      */
     public ArrayList<Parlamentare> m3(Parlamentare p){
         return null;
