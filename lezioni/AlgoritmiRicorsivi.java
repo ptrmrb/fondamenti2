@@ -1,11 +1,9 @@
-package lezioni; 
-
 public class AlgoritmiRicorsivi 
-{	public boolean ricercaBinaria(int[] a, int v)
+{	public static boolean ricercaBinaria(int[] a, int v)
 	{	return ricercaBinariaRicorsiva(a, v, 0, a.length - 1);
 	}
 	
-	private boolean ricercaBinariaRicorsiva(int[] a, int v, int inizio, int fine)
+	private static boolean ricercaBinariaRicorsiva(int[] a, int v, int inizio, int fine)
 	{	if(inizio > fine)
 			return false;
 		int centro = (inizio + fine) / 2;
@@ -16,7 +14,7 @@ public class AlgoritmiRicorsivi
 		return ricercaBinariaRicorsiva(a, v, inizio, centro - 1);
 	}
 	
-	private int[] merge(int[] v1, int[] v2)
+	private static int[] merge(int[] v1, int[] v2)
 	{	int[] ret = new int[v1.length + v2.length];
 		int i = 0;
 		int j = 0;
@@ -45,7 +43,7 @@ public class AlgoritmiRicorsivi
 		return ret;
 	}
 	
-	public int[] mergeSort(int[] v)
+	public static int[] mergeSort(int[] v)
 	{	int n = v.length;
 		if(n == 1)
 			return v;
@@ -60,5 +58,35 @@ public class AlgoritmiRicorsivi
 		int[] secondaMetaOrdinata = mergeSort(secondaMeta);
 		
 		return merge(primaMetaOrdinata, secondaMetaOrdinata);
+	}
+	
+	private static void quickSortRicorsivo(int[] v, int inizio, int fine)
+	{	if(inizio < fine)
+		{	int p = partiziona(v, inizio, fine);
+			quickSortRicorsivo(v, inizio, p - 1);
+			quickSortRicorsivo(v, p + 1, fine);
+		}
+	}
+	
+	private static int partiziona(int[] v, int inizio, int fine)
+	{	int pivot = v[fine];
+		int posLibera = inizio;
+		for(int j = inizio; j < fine; j++)
+			if(v[j] <= pivot)
+			{	scambia(v,posLibera,j);
+				posLibera++;
+			}
+		scambia(v,posLibera,fine);
+		return posLibera;
+	}
+	
+	private static void scambia(int[] v, int i, int j)
+	{	int t = v[i];
+		v[i] = v[j];
+		v[j] = t;
+	}
+	
+	public static void quickSort(int[] v)
+	{	quickSortRicorsivo(v,0,v.length - 1);
 	}
 }
