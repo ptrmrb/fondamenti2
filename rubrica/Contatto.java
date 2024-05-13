@@ -2,7 +2,7 @@ package rubrica;
 
 // La classe genera oggetti mutabili
 public class Contatto 
-{	private String nome, cognome, email; // attributi 
+{	private String nome, cognome, email;
 	private NumeroTelefonico[] numeri;
 	private int numeriMemorizzati;
 
@@ -94,7 +94,7 @@ public class Contatto
 	private void eliminaNumero2(int indice) // versione alternativa di eliminaNumero(int indice) 
 	{	for(int i=indice+1; i<numeriMemorizzati; i++)
 			numeri[i-1] = numeri[i];
-		numeri[numeriMemorizzati-1] = null; // OPZIONALE
+		numeri[numeriMemorizzati-1] = null;// OPZIONALE
 		numeriMemorizzati--;
 	}
 

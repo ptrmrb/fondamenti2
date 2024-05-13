@@ -60,6 +60,10 @@ public class AlgoritmiRicorsivi
 		return merge(primaMetaOrdinata, secondaMetaOrdinata);
 	}
 	
+	public static void quickSort(int[] v)
+	{	quickSortRicorsivo(v,0,v.length - 1);
+	}
+
 	private static void quickSortRicorsivo(int[] v, int inizio, int fine)
 	{	if(inizio < fine)
 		{	int p = partiziona(v, inizio, fine);
@@ -86,7 +90,5 @@ public class AlgoritmiRicorsivi
 		v[j] = t;
 	}
 	
-	public static void quickSort(int[] v)
-	{	quickSortRicorsivo(v,0,v.length - 1);
-	}
+	
 }
