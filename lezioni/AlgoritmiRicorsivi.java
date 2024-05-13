@@ -69,7 +69,7 @@ public class AlgoritmiRicorsivi
 
 	private static void quickSortRicorsivo(int[] v, int inizio, int fine)
 	{	if(inizio < fine)
-		{	int p = partiziona(v, inizio, fine);
+		{	int p = partiziona2(v, inizio, fine);
 			quickSortRicorsivo(v, inizio, p - 1);
 			quickSortRicorsivo(v, p + 1, fine);
 		}
@@ -91,26 +91,23 @@ public class AlgoritmiRicorsivi
 	}
 
 	private static int partiziona2(int[] v, int inizio, int fine) {
-		// Scegliamo come pivot, il primo elemento dell'array
+		// Scegliamo il pivot come il primo elemento dell'array
 		int pivot = v[inizio];
 	
-		int posLibera = inizio;  // Indice per tenere traccia della posizione del pivot
+		// Indice per tenere traccia della posizione del pivot
+		int posLibera = inizio;
 	
 		// Scorrimento dell'array
-		for (int j = inizio; j < fine; j++) {
+		for (int j = inizio + 1; j <= fine; j++) {
 			// Se l'elemento corrente è minore o uguale al pivot, incrementa l'indice posLibera e scambia gli elementi
 			if (v[j] <= pivot) {
 				posLibera++;
-				// Scambia v[posLibera] con v[j]
 				scambia(v, posLibera, j);
 			}
 		}
-	
-		// Alla fine del ciclo, posiziona il pivot nella sua posizione corretta
-		// Scambia v[i + 1] con v[fine] (posizione del pivot)
-		scambia(v, posLibera, fine);
-	
-		// Ritorna l'indice del pivot
+
+		// Posiziona il pivot nella posizione corretta
+		scambia(v, posLibera, inizio);
 		return posLibera;
 	}
 
@@ -123,9 +120,9 @@ public class AlgoritmiRicorsivi
 	
 
 	public static void main(String[] args) {
-		int[] v = { 1,5,1,7,12,-51,1,7,9 };
-		quickSort(v);
-		Terminale.stampa(v);
+		int[] array = { 1,5,1,7,12,1,7,9 };
+		quickSort(array);
+		Terminale.stampa(array);
 	}
 	
 }
