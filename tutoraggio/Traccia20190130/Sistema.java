@@ -11,7 +11,7 @@ public class Sistema {
         this.pubblicazioni = pubblicazioni;
     }
 
-    /**
+    /*
      *
      * @param s
      * @return la lista dei codici delle pubblicazioni redatte solo da autori residenti nella città s.
@@ -20,9 +20,9 @@ public class Sistema {
      /* public ArrayList<String> pubblicazioniCittà(String s).
         Il metodo restituisce la lista dei codici delle pubblicazioni
         redatte solo da autori residenti nella città s. */
-        
+
     public ArrayList<String> pubblicazioniCittà(String s){
-        return null;
+        
     }
 
     /**
