@@ -1,4 +1,4 @@
-package Traccia20190130; 
+package traccia20190130; 
 
 public class Pubblicazione{
     private String codice, titolo;
