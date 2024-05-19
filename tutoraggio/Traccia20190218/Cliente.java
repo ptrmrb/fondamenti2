@@ -1,4 +1,4 @@
-package Traccia20190218;
+package traccia20190218;
 
 public class Cliente {
     private String nome, citta;
