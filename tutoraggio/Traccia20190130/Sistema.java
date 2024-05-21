@@ -1,6 +1,7 @@
 package traccia20190130;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Sistema {
     private ArrayList<Autore> autori;
@@ -11,18 +12,24 @@ public class Sistema {
         this.pubblicazioni = pubblicazioni;
     }
 
-    /*
+    /**
      *
      * @param s
      * @return la lista dei codici delle pubblicazioni redatte solo da autori residenti nella città s.
      */
-
-     /* public ArrayList<String> pubblicazioniCittà(String s).
-        Il metodo restituisce la lista dei codici delle pubblicazioni
-        redatte solo da autori residenti nella città s. */
-
     public ArrayList<String> pubblicazioniCittà(String s){
-        
+        ArrayList<String> ret = new ArrayList<>();
+        for(Pubblicazione p: pubblicazioni)
+            if(soloCitta(p, s))
+                ret.add(p.getCodice());
+        return ret;
+    }
+
+    private boolean soloCitta(Pubblicazione p, String s) {
+        for(String a: p.getAutori())
+            if(!autori.get(autori.indexOf(new Autore(a, ""))).getCitta().equals(s))
+                return false;
+        return true;
     }
 
     /**
@@ -32,18 +39,31 @@ public class Sistema {
      * @return la lista degli autori di pubblicazioni a singolo nome nel periodo compreso tra la data d1 e la data d2.
      */
     public ArrayList<Autore> individuali(int d1, int d2){
-        return null;
+        ArrayList<Autore> ret = new ArrayList<>();
+        for(Pubblicazione p : pubblicazioni)
+            if(p.getData() >= d1 && p.getData() <= d2 && p.getAutori().size()==1)
+                ret.add(autori.get(autori.indexOf(new Autore(p.getAutori().get(0), ""))));
+        return ret;
     }
 
     /**
      *
      * @param a
      * @param b
-     * @return la lista delle pubblicazioni scritte congiuntamente dagli autori a e b (eventualmente insieme ad altri),
-     * ordinata secondo la data di pubblicazione dei lavori.
+     * @return la lista delle pubblicazioni scritte congiuntamente dagli autori a e b
+     * (eventualmente insieme ad altri), ordinata secondo la data di pubblicazione dei lavori.
      */
     public ArrayList<Pubblicazione> coautori(Autore a, Autore b){
-        return null;
+        ArrayList<Pubblicazione> ret = new ArrayList<>();
+        for(Pubblicazione p: pubblicazioni)
+            if(p.getAutori().containsAll(List.of(a.getNome(), b.getNome()))) {
+                int i = 0;
+                for(; i < ret.size(); i++)
+                    if(ret.get(i).getData()>p.getData())
+                        break;
+                ret.add(i, p);
+            }
+        return ret;
     }
 
     public static void main(String[] args) {
