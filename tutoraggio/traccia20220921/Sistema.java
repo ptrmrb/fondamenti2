@@ -52,30 +52,115 @@ public class Sistema
         return maxCliente;
     }
     
+    
     /*  Il metodo restituisce true se e solo se l’insieme delle operazioni fatte dal cliente con
     *   nome c soddisfa le seguenti condizioni: 
-            • c non ha acquistato più di una volta uno stesso film; 
+        	• c non ha acquistato più di una volta uno stesso film; 
             • per ogni film f noleggiato da c più di una volta, le date in cui c ha
               noleggiato f sono tutte diverse; 
     */
 
-    public boolean verificaDati(String c){
+    public boolean verificaDati(Cliente c)
+    {		
+    	LinkedList<String> titoli = c.getTitoli();
+    	LinkedList<String> modalità = c.getModalita();
+    	LinkedList<Integer> date = c.getDate();
+            	
+        for ( int i = 0; i < titoli.size(); i ++ )
+        {
+            if ( !verificaFilmAcquistato(c, titoli.get(i), titoli, modalità) )
+            	return false;
+             if ( !verificaNoleggi(c, titoli.get(i), titoli, modalità, date) )
+            	 	return false;
+        }
+		return true;
+    } 
+    
+    private boolean verificaFilmAcquistato(Cliente cliente, String titoloFilm, LinkedList<String> titoli, LinkedList<String> modalità)
+    {
+    	int count = 0; 
+    	
+    	for ( int i = 0; i < titoli.size(); i ++ )
+    	{
+    		String titoloCorrente = titoli.get(i);
+            
+    		if ( titoloFilm == titoloCorrente && modalità.get(i).equals("acquisto") )
+    			count += 1;
+    	}
+    	
+    	if ( count > 1 )
+    		return false;
+    	return true;
+   
+    }
+    
+    private boolean verificaNoleggi(Cliente cliente, String titoloFilm, LinkedList<String> titoli, LinkedList<String> modalità , LinkedList<Integer> date)
+    {	
+    	for (int i = 0; i < titoli.size(); i++)
+    	{
+            if ( modalità.get(i).equals("noleggio") )
+            {
+                for (int j = i + 1; j < titoli.size(); j++)
+                {
+                    if ( titoloFilm.equals(titoli.get(j)) && modalità.get(j).equals("noleggio") )
+                    {
+                        if ( date.get(i).equals(date.get(j)) )
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+    	}
+    	return true;
+    }
         
-        for ( Cliente cliente : clienti ){
-            if ( cliente.equals(c) )
-                
+    public String registaApprezzato(int d1, int d2) {
+        List<String> registi = new ArrayList<>();
+        List<Integer> conteggi = new ArrayList<>();
 
+        for (Cliente cliente : clienti) {
+            LinkedList<String> titoli = cliente.getTitoli();
+            LinkedList<Integer> date = cliente.getDate();
+            List<String> clientiConsiderati = new ArrayList<>();
 
+            for (int i = 0; i < titoli.size(); i++) {
+                String titolo = titoli.get(i);
+                int data = date.get(i);
+
+                if (data >= d1 && data <= d2) {
+                    for (Film film : films) {
+                        if (film.getTitolo().equals(titolo)) {
+                            String regista = film.getRegista();
+                            if (!clientiConsiderati.contains(cliente.getNome())) {
+                                int index = registi.indexOf(regista);
+                                if (index == -1) {
+                                    registi.add(regista);
+                                    conteggi.add(1);
+                                } else {
+                                    conteggi.set(index, conteggi.get(index) + 1);
+                                }
+                                clientiConsiderati.add(cliente.getNome());
+                            }
+                        }
+                    }
+                }
+            }
         }
 
+        String registaMax = null;
+        int maxClienti = 0;
 
+        for (int i = 0; i < registi.size(); i++) {
+            if (conteggi.get(i) > maxClienti) {
+                maxClienti = conteggi.get(i);
+                registaMax = registi.get(i);
+            }
+        }
+
+        return registaMax;
     }
 
-
-    public String registaAprezzato(){
-
-
-    }
 
     public static void main(String[] args) {
         
@@ -95,9 +180,7 @@ public class Sistema
 		Sistema sis = new Sistema(films,clienti);
 
         System.out.println(sis.clienteMax());
-
-
-
-        ciaooooooooooo
+        System.out.println(sis.verificaDati(c4));
+        System.out.println(sis.registaApprezzato(10,20));
     }
 }
