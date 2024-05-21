@@ -52,8 +52,7 @@ public class Sistema {
         ArrayList<Parlamentare> parlamentari= new ArrayList<>();
         parlamentari.add(new Parlamentare("RSS", "Calabria", "partito1"));
         parlamentari.add(new Parlamentare("BNC", "Lombardia", "partito2"));
-        Parlamentare g = new Parlamentare("GIA", "Lombardia", "partito2");
-        parlamentari.add(g);
+        parlamentari.add(new Parlamentare("GIA", "Lombardia", "partito2"));
         parlamentari.add(new Parlamentare("VRD", "Calabria", "partito3"));
         parlamentari.add(new Parlamentare("MAR", "Calabria", "partito1"));
 
