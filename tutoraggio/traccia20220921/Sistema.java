@@ -18,39 +18,38 @@ public class Sistema
         this.clienti = clienti;
     }
 
-    public String clienteMax(){
-        String maxCliente = null; 
+    public String clienteMax() {
+        String maxCliente = null;
         int maxSpesa = 0;
-
-        for( Cliente cliente: clienti ) // controllo i clienti
-        {
-            int spesaTot = 0; 
-            LinkedList<String> titoli = cliente.getTitoli(); // titoli per cliente
-            LinkedList<String> modalità = cliente.getModalita(); // modalita per titolo
-            
-            for ( int i = 0; i < titoli.size(); i++ ) // scorri i titoli
-            {
-                String titolo = titoli.get(i);
-                String modalitaAcquisto = modalità.get(i);
-
-                for ( Film film : films ) // scorri i film 
-                {
-                    if ( film.getTitolo().equals(titolo) ) // se trova il film del cliente
-                        if ( modalitaAcquisto.equals("acquisto")) // riconosce la modalità
-                            spesaTot += film.getPrezzoAcquisto(); // inc
-                        else if ( modalitaAcquisto.equals("noleggio"))
-                            spesaTot += film.getPrezzoNoleggio(); // inc
+    
+        for (Cliente cliente : clienti) {
+            int spesaTotale = 0;
+            ListIterator<String> lit = cliente.getTitoli().listIterator();
+            ListIterator<String> lim = cliente.getModalita().listIterator();
+    
+            while (lit.hasNext() && lim.hasNext()) {
+                String titolo = lit.next();
+                String modalita = lim.next();
+    
+                for (Film film : films) {
+                    if (film.getTitolo().equals(titolo)) {
+                        if (modalita.equals("acquisto")) {
+                            spesaTotale += film.getPrezzoAcquisto();
+                        } else if (modalita.equals("noleggio")) {
+                            spesaTotale += film.getPrezzoNoleggio();
+                        }
+                    }
                 }
             }
-
-            if ( spesaTot > maxSpesa ) // controllo max 
-            {
-                maxSpesa = spesaTot;
+    
+            if (spesaTotale > maxSpesa) {
+                maxSpesa = spesaTotale;
                 maxCliente = cliente.getNome();
             }
         }
         return maxCliente;
     }
+    
     
     
     /*  Il metodo restituisce true se e solo se l’insieme delle operazioni fatte dal cliente con
@@ -60,80 +59,90 @@ public class Sistema
               noleggiato f sono tutte diverse; 
     */
 
-    public boolean verificaDati(Cliente c)
-    {		
-    	LinkedList<String> titoli = c.getTitoli();
-    	LinkedList<String> modalità = c.getModalita();
-    	LinkedList<Integer> date = c.getDate();
-            	
-        for ( int i = 0; i < titoli.size(); i ++ )
-        {
-            if ( !verificaFilmAcquistato(c, titoli.get(i), titoli, modalità) )
-            	return false;
-             if ( !verificaNoleggi(c, titoli.get(i), titoli, modalità, date) )
-            	 	return false;
+    public boolean verificaDati(String c) {
+        Cliente cliente = null;
+        for (Cliente cl : clienti) {
+            if (cl.getNome().equals(c)) {
+                cliente = cl;
+                break;
+            }
         }
-		return true;
-    } 
+        if (cliente == null)
+            return false;
+        LinkedList<String> titoli = cliente.getTitoli();
+        LinkedList<String> modalita = cliente.getModalita();
+        LinkedList<Integer> date = cliente.getDate();
     
-    private boolean verificaFilmAcquistato(Cliente cliente, String titoloFilm, LinkedList<String> titoli, LinkedList<String> modalità)
-    {
-    	int count = 0; 
-    	
-    	for ( int i = 0; i < titoli.size(); i ++ )
-    	{
-    		String titoloCorrente = titoli.get(i);
-            
-    		if ( titoloFilm == titoloCorrente && modalità.get(i).equals("acquisto") )
-    			count += 1;
-    	}
-    	
-    	if ( count > 1 )
-    		return false;
-    	return true;
-   
-    }
+        // Verifica che ogni film acquistato non sia acquistato più di una volta
+        ListIterator<String> lit1 = titoli.listIterator();
+        ListIterator<String> lim1 = modalita.listIterator();
+
+        while (lit1.hasNext() && lim1.hasNext()) {
+            String titolo1 = lit1.next();
+            String mod1 = lim1.next();
+
+            if (mod1.equals("acquisto")) {
+                ListIterator<String> lit2 = titoli.listIterator(lit1.nextIndex());
+                ListIterator<String> lim2 = modalita.listIterator(lim1.nextIndex());
+                while (lit2.hasNext() && lim2.hasNext()) {
+                    if (titolo1.equals(lit2.next()) && lim2.next().equals("acquisto")) {
+                        return false;
+                    }
+                }
+            }
+        }
     
-    private boolean verificaNoleggi(Cliente cliente, String titoloFilm, LinkedList<String> titoli, LinkedList<String> modalità , LinkedList<Integer> date)
-    {	
-    	for (int i = 0; i < titoli.size(); i++)
-    	{
-            if ( modalità.get(i).equals("noleggio") )
-            {
-                for (int j = i + 1; j < titoli.size(); j++)
-                {
-                    if ( titoloFilm.equals(titoli.get(j)) && modalità.get(j).equals("noleggio") )
-                    {
-                        if ( date.get(i).equals(date.get(j)) )
-                        {
+        // Verifica che le date di noleggio per ogni film siano tutte diverse
+        lit1 = titoli.listIterator();
+        lim1 = modalita.listIterator();
+        ListIterator<Integer> lid1 = date.listIterator();
+
+        while (lit1.hasNext() && lim1.hasNext() && lid1.hasNext()) {
+            String titolo1 = lit1.next();
+            String mod1 = lim1.next();
+            int data1 = lid1.next();
+
+            if (mod1.equals("noleggio")) {
+                ListIterator<String> lit2 = titoli.listIterator(lit1.previousIndex() + 1);
+                ListIterator<String> lim2 = modalita.listIterator(lim1.previousIndex() + 1);
+                ListIterator<Integer> lid2 = date.listIterator(lid1.previousIndex() + 1);
+
+                while (lit2.hasNext() && lim2.hasNext() && lid2.hasNext()) {
+
+                    if (titolo1.equals(lit2.next()) && lim2.next().equals("noleggio")) {
+
+                        if (data1 == lid2.next()) {
                             return false;
                         }
                     }
                 }
             }
-    	}
-    	return true;
+        }
+        return true;
     }
-        
+    
     public String registaApprezzato(int d1, int d2) {
         List<String> registi = new ArrayList<>();
         List<Integer> conteggi = new ArrayList<>();
-
+    
         for (Cliente cliente : clienti) {
-            LinkedList<String> titoli = cliente.getTitoli();
-            LinkedList<Integer> date = cliente.getDate();
+            ListIterator<String> lit = cliente.getTitoli().listIterator();
+            ListIterator<Integer> lid = cliente.getDate().listIterator();
             List<String> clientiConsiderati = new ArrayList<>();
-
-            for (int i = 0; i < titoli.size(); i++) {
-                String titolo = titoli.get(i);
-                int data = date.get(i);
-
+    
+            while (lit.hasNext() && lid.hasNext()) {
+                String titolo = lit.next();
+                int data = lid.next();
+    
                 if (data >= d1 && data <= d2) {
                     for (Film film : films) {
+
                         if (film.getTitolo().equals(titolo)) {
                             String regista = film.getRegista();
+
                             if (!clientiConsiderati.contains(cliente.getNome())) {
                                 int index = registi.indexOf(regista);
+
                                 if (index == -1) {
                                     registi.add(regista);
                                     conteggi.add(1);
@@ -147,19 +156,20 @@ public class Sistema
                 }
             }
         }
-
+    
         String registaMax = null;
         int maxClienti = 0;
-
+    
         for (int i = 0; i < registi.size(); i++) {
             if (conteggi.get(i) > maxClienti) {
                 maxClienti = conteggi.get(i);
                 registaMax = registi.get(i);
             }
         }
-
+    
         return registaMax;
     }
+    
 
 
     public static void main(String[] args) {
@@ -180,7 +190,7 @@ public class Sistema
 		Sistema sis = new Sistema(films,clienti);
 
         System.out.println(sis.clienteMax());
-        System.out.println(sis.verificaDati(c4));
-        System.out.println(sis.registaApprezzato(10,20));
+        //System.out.println(sis.verificaDati(c4));
+        //System.out.println(sis.registaApprezzato(10,20));
     }
 }
