@@ -51,7 +51,6 @@ public class Sistema
     }
     
     
-    
     /*  Il metodo restituisce true se e solo se l’insieme delle operazioni fatte dal cliente con
     *   nome c soddisfa le seguenti condizioni: 
         	• c non ha acquistato più di una volta uno stesso film; 
@@ -60,6 +59,7 @@ public class Sistema
     */
 
     public boolean verificaDati(String c) {
+
         Cliente cliente = null;
         for (Cliente cl : clienti) {
             if (cl.getNome().equals(c)) {
@@ -67,8 +67,7 @@ public class Sistema
                 break;
             }
         }
-        if (cliente == null)
-            return false;
+
         LinkedList<String> titoli = cliente.getTitoli();
         LinkedList<String> modalita = cliente.getModalita();
         LinkedList<Integer> date = cliente.getDate();
@@ -84,7 +83,9 @@ public class Sistema
             if (mod1.equals("acquisto")) {
                 ListIterator<String> lit2 = titoli.listIterator(lit1.nextIndex());
                 ListIterator<String> lim2 = modalita.listIterator(lim1.nextIndex());
+
                 while (lit2.hasNext() && lim2.hasNext()) {
+
                     if (titolo1.equals(lit2.next()) && lim2.next().equals("acquisto")) {
                         return false;
                     }
