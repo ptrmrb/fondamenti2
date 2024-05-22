@@ -167,7 +167,6 @@ public class Sistema
                 registaMax = registi.get(i);
             }
         }
-    
         return registaMax;
     }
     
