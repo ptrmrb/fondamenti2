@@ -2,6 +2,8 @@ package listeconcatenate;
 
 import java.util.*;
 
+import terminale.Terminale;
+
 class NodoInt
 {	private int info;
 	private NodoInt successivo;
@@ -339,5 +341,62 @@ public class ListaConcatenataInt
 		
 		//condizione ricorsiva
 		return verificaPariDispariRic( second, third , third.getSuccessivo() );
+	}
+
+	// esercizio traccia20210117
+
+	/*Si arricchisca la classe ListaConcatenataInt sviluppata durante il corso con un metodo ordinataTratti
+	che restituisca true se e solo se lista è “ordinata a tratti”. Ossia, scorrendo la lista dall’inizio
+	alla fine, i valori devono essere ordinati in senso crescente fino a che non viene incontrato il numero
+	“delimitatore” 0 o viene raggiunta la fine della lista. Dopo ogni occorrenza del delimitatore 0, il senso
+	di ordinamento viene invertito: se prima era crescente, diventa decrescente; se prima era decrescente,
+	diventa crescente. Si assuma che nel primo tratto l’ordinamento debba essere crescente. Si assuma
+	inoltre che una lista vuota soddisfi la proprietà verificata da ordinataTratti. Il metodo ordinataTratti
+	dovrà essere ricorsivo o invocare un opportuno metodo ricorsivo sulla classe NodoInt.\ */
+
+	public boolean ordinataTratti ()
+	{
+		return ordinataTratti(testa,true);
+	}
+
+
+	// flag == true --> crescente;
+	// flag == false --> decrescente;
+
+	private boolean ordinataTratti(NodoInt n, boolean flag)
+	{	
+		Terminale.stampa("flag: " + flag);
+		if ( n == null ) 
+			return true;
+
+		if ( n.getSuccessivo() != null )
+		{
+			if ( n.getInfo() == 0 ) return ordinataTratti(n.getSuccessivo(), !flag);
+
+			if ( flag )
+			{	
+				if ( n.getSuccessivo().getInfo() != 0 ){
+					if ( n.getSuccessivo().getInfo() >= n.getInfo() ) 
+						return ordinataTratti(n.getSuccessivo(), flag);
+					return false;
+				}
+			}
+			else
+			{
+				if ( n.getSuccessivo().getInfo() != 0){
+					if ( n.getSuccessivo().getInfo() <= n.getInfo() )
+						return ordinataTratti(n.getSuccessivo(), flag);
+					return false;
+				}
+			}
+		}
+		return ordinataTratti(n.getSuccessivo(), flag);
+	}
+
+	public static void main(String[] args) {
+		int[] lista = { 1,2,5,6,0,6,2,1};
+        ListaConcatenataInt l = new ListaConcatenataInt(lista);
+        Terminale.stampa(' ');
+        Terminale.stampa(l.ordinataTratti());
 	}
 }

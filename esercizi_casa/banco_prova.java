@@ -22,6 +22,11 @@ public class banco_prova
         magazzino.aggiungiAuto(b); 
         magazzino.aggiungiAuto(c);
 
+        int[] lista = { 1,2,5,6,0,6,2,1};
+        ListaConcatenataInt l = new ListaConcatenataInt(lista);
+
+        Terminale.stampa(ordinataTratti(l));
+
         
 
         
