@@ -58,61 +58,52 @@ public class Sistema
               noleggiato f sono tutte diverse; 
     */
 
-    public boolean verificaDati(String c) {
-
-        Cliente cliente = null;
-        for (Cliente cl : clienti) {
-            if (cl.getNome().equals(c)) {
-                cliente = cl;
-                break;
-            }
+    public boolean verificaDati(Cliente c)
+    {		
+    	LinkedList<String> titoli = c.getTitoli();
+    	LinkedList<String> modalità = c.getModalita();
+    	LinkedList<Integer> date = c.getDate();
+            	
+        for ( int i = 0; i < titoli.size(); i ++ )
+        {
+            if ( !verificaFilmAcquistato(c, titoli.get(i), titoli, modalità) )
+            	return false;
+             if ( !verificaNoleggi(c, titoli.get(i), titoli, modalità, date) )
+            	 	return false;
         }
-
-        LinkedList<String> titoli = cliente.getTitoli();
-        LinkedList<String> modalita = cliente.getModalita();
-        LinkedList<Integer> date = cliente.getDate();
+		return true;
+    } 
     
-        // Verifica che ogni film acquistato non sia acquistato più di una volta
-        ListIterator<String> lit1 = titoli.listIterator();
-        ListIterator<String> lim1 = modalita.listIterator();
-
-        while (lit1.hasNext() && lim1.hasNext()) {
-            String titolo1 = lit1.next();
-            String mod1 = lim1.next();
-
-            if (mod1.equals("acquisto")) {
-                ListIterator<String> lit2 = titoli.listIterator(lit1.nextIndex());
-                ListIterator<String> lim2 = modalita.listIterator(lim1.nextIndex());
-
-                while (lit2.hasNext() && lim2.hasNext()) {
-
-                    if (titolo1.equals(lit2.next()) && lim2.next().equals("acquisto")) {
-                        return false;
-                    }
-                }
-            }
-        }
+    private boolean verificaFilmAcquistato(Cliente cliente, String titoloFilm, LinkedList<String> titoli, LinkedList<String> modalità)
+    {
+    	int count = 0; 
+    	
+    	for ( int i = 0; i < titoli.size(); i ++ )
+    	{
+    		String titoloCorrente = titoli.get(i);
+            
+    		if ( titoloFilm == titoloCorrente && modalità.get(i).equals("acquisto") )
+    			count += 1;
+    	}
+    	
+    	if ( count > 1 )
+    		return false;
+    	return true;
+   
+    }
     
-        // Verifica che le date di noleggio per ogni film siano tutte diverse
-        lit1 = titoli.listIterator();
-        lim1 = modalita.listIterator();
-        ListIterator<Integer> lid1 = date.listIterator();
-
-        while (lit1.hasNext() && lim1.hasNext() && lid1.hasNext()) {
-            String titolo1 = lit1.next();
-            String mod1 = lim1.next();
-            int data1 = lid1.next();
-
-            if (mod1.equals("noleggio")) {
-                ListIterator<String> lit2 = titoli.listIterator(lit1.previousIndex() + 1);
-                ListIterator<String> lim2 = modalita.listIterator(lim1.previousIndex() + 1);
-                ListIterator<Integer> lid2 = date.listIterator(lid1.previousIndex() + 1);
-
-                while (lit2.hasNext() && lim2.hasNext() && lid2.hasNext()) {
-
-                    if (titolo1.equals(lit2.next()) && lim2.next().equals("noleggio")) {
-
-                        if (data1 == lid2.next()) {
+    private boolean verificaNoleggi(Cliente cliente, String titoloFilm, LinkedList<String> titoli, LinkedList<String> modalità , LinkedList<Integer> date)
+    {	
+    	for (int i = 0; i < titoli.size(); i++)
+    	{
+            if ( modalità.get(i).equals("noleggio") )
+            {
+                for (int j = i + 1; j < titoli.size(); j++)
+                {
+                    if ( titoloFilm.equals(titoli.get(j)) && modalità.get(j).equals("noleggio") )
+                    {
+                        if ( date.get(i).equals(date.get(j)) )
+                        {
                             return false;
                         }
                     }
@@ -169,7 +160,6 @@ public class Sistema
         }
         return registaMax;
     }
-    
 
 
     public static void main(String[] args) {
