@@ -1,4 +1,4 @@
-package traccia20190909;
+package appelloSettembre;
 import java.util.*;
 
 public class DisegnoDiLegge implements Comparable<DisegnoDiLegge>{

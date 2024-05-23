@@ -337,7 +337,7 @@ public class ListaConcatenataInt
 		if ( third == null ) return false;
 
 		// condizione di uscita positiva
-		if ( first.getInfo()%2 == 0 && first == second.getInfo() && third.getInfo()%2 != 0 ) return true;
+		if ( first.getInfo()%2 == 0 && first.getInfo() == second.getInfo() && third.getInfo()%2 != 0 ) return true;
 		
 		//condizione ricorsiva
 		return verificaPariDispariRic( second, third , third.getSuccessivo() );

@@ -1,5 +1,6 @@
-import java.util.LinkedList;
-import java.util.ListIterator;
+package traccia20220617;
+
+import java.util.*;
 
 public class Sistema()
 {
@@ -24,8 +25,6 @@ public class Sistema()
         }
     }
 
-    
-
     private Volo cerca_volo ( String partenza, String destinazione )
     {   Volo ret = null; 
         for ( Volo v : voli )
@@ -35,7 +34,6 @@ public class Sistema()
             }
         return ret; 
     }
-
 
     public Volo voloMax()
     {   Volo ret = null;

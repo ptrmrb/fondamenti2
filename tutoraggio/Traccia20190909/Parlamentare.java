@@ -1,4 +1,4 @@
-package traccia20190909;
+package appelloSettembre;
 
 public class Parlamentare {
 	private String cf;

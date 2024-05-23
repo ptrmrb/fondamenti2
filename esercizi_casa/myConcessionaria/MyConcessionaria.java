@@ -101,17 +101,7 @@ public class MyConcessionaria {
     // inferiore a 10.000 euro 
 
 
-    public MyAutomobile lowerCAutomobile (){
 
-        for ( MyAutomobile a: magazzino )
-        {
-            if ( a.getPrezzo() < 10.000 ){
-
-            }
-
-        }
-        return 
-    }
 
             
 

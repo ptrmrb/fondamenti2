@@ -1,4 +1,4 @@
-package traccia20190909;
+package traccia20220617;
 
 import listeconcatenate.EccezioneIndiceNonValido;
 import listeconcatenate.EccezioneListaVuota;
