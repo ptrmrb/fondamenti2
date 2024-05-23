@@ -182,5 +182,6 @@ public class Sistema
         System.out.println(sis.clienteMax());
         //System.out.println(sis.verificaDati(c4));
         //System.out.println(sis.registaApprezzato(10,20));
+        // ciao
     }
 }
