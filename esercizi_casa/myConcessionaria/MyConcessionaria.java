@@ -5,9 +5,9 @@
  * 		-	La classe deve contenere metodi per:
  * 				
  * 				-	trovare la casa produttrice più ricorrente;
- * 				-	trovare l'auto con la cilindrata pi� bassa tra quelle con un prezzo
+ * 				-	trovare l'auto con la cilindrata più bassa tra quelle con un prezzo
  * 					inferiore a 10.000 euro;
- * 				-	trovare l'auto con la cilindrata pi� alta tra quelle con un prezzo
+ * 				-	trovare l'auto con la cilindrata più alta tra quelle con un prezzo
  * 					superiore alla media dei prezzi delle auto;
  * 				-	trovare le case produttrici che producono solo auto con un prezzo
  * 					inferiore alla media dei prezzi delle auto;
@@ -54,7 +54,7 @@ public class MyConcessionaria {
         {   somma += a.getPrezzo(); 
         }
         return somma;
-    }
+    }  
 
     // trovare la casa produttrice più ricorrente;
     public String casaRicorrente()
@@ -97,7 +97,21 @@ public class MyConcessionaria {
 
     }
 
-    
+    // trovare l'auto con la cilindrata più bassa tra quelle con un prezzo
+    // inferiore a 10.000 euro 
+
+
+    public MyAutomobile lowerCAutomobile (){
+
+        for ( MyAutomobile a: magazzino )
+        {
+            if ( a.getPrezzo() < 10.000 ){
+
+            }
+
+        }
+        return 
+    }
 
             
 

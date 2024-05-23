@@ -320,4 +320,22 @@ public class ListaConcatenataInt
 			throw new EccezioneListaVuota();		
 		return massimoDa(testa);		
 	}
+
+	// esercitazione 23 maggio
+	public boolean verificaPariDispari()
+	{	
+		if ( lunghezza < 3 ) return false;
+		return verificaPariDispariRic(testa, testa.getSuccessivo(), testa.getSuccessivo().getSuccessivo());
+
+	}
+
+	private boolean verificaPariDispariRic(NodoInt first, NodoInt second, NodoInt third)
+	{
+		// condizione di uscita negativa--> non ho mai verificato che ci sia una tripla che rispetta le condizioni
+		if ( third == null ) return false;
+		// condizione di uscita positiva
+		if ( first.getInfo()%2 == 0 && first == second.getInfo() && third.getInfo()%2 != 0 ) return true;
+		//condizione ricorsiva
+		return verificaPariDispariRic( second, third , third.getSuccessivo() );
+	}
 }
