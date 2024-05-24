@@ -117,15 +117,83 @@ public class Sistema {
      *
      * @param d1
      * @param d2
-     * @return la lista delle marche delle merci presenti negli ordini che,
+     * @return restituisce la lista delle marche delle merci presenti negli ordini che,
      * tra gli ordini effettuati tra la data d1 e la data d2 (incluse), hanno importo massimo.
      * L’importo di un ordine è dato dal prodotto della quantità di merce ordinata per il prezzo al quale il fornitore
      * indicato fornisce la merce (si restituisca una valore null se verificaMerciEOrdini() restituisce false).
      * La lista restituita deve contenere una stessa marca al più una volta.
      */
     public LinkedList<String> marcheOrdiniMassimi(int d1, int d2){
+
+        if ( !verificaMerciEOrdini() ) return null; 
+
+        LinkedList<String> ret = new LinkedList<>();
+        Float importoMassimo = 0f; 
         
-        return null;
+        for ( Ordine o : ordini ){
+
+            Terminale.stampa("massimo "+ importoMassimo);
+
+            float importoOrdine = 0f; 
+
+            if ( o.getData() >= d1 && o.getData() <= d2 ) // trovo la data corretta
+            { 
+                for ( Merce m : merci ) // scorro le merci alla ricerca di quella contenuta nell'ordine 
+                {
+                    if ( m.getNome().equals(o.getMerce()) ) // trovo la merce fornita nell'ordine
+                    {  
+                        importoOrdine = o.getQuantita() * prezzoFornitore(o.getFornitore(), m); // calcolo l'importo dell'ordine
+                        
+                        Terminale.stampa("corrente " + importoOrdine);
+
+                        if ( importoOrdine != importoMassimo ) // se sono diversi 
+                        {
+                            if ( importoOrdine > importoMassimo ) // se è maggiore pulisci la lista delle marche massime e aggiungi la nuova massima
+                            {
+                                importoMassimo = importoOrdine;
+                                ret.clear();
+                                ret.add(m.getMarca());
+                                break;
+                            }
+                            else // se è minore non fai niente
+                                break;        
+                        }
+                        else // se sono uguali e non è già nella lista, aggiungi la marca
+                        {
+                            if ( !ret.contains(m.getMarca()) ){
+                                ret.add(m.getMarca());
+                                break;
+                            }
+                        }
+                    }
+                }   
+            }
+        }
+
+        Terminale.stampa("massimo finale "+ importoMassimo);
+        return ret;
+    }
+
+    private float prezzoFornitore( String fornitore, Merce m)
+    {
+        Float ret = 0f;
+
+        LinkedList<String> fornitori = m.getListaFornitori(); // lista dei fornitori
+        ListIterator<String> lif = fornitori.listIterator();
+        LinkedList<Float> prezzi = m.getListaPrezzi();  // lista dei prezzi dei fornitori
+        ListIterator<Float> lip = prezzi.listIterator(); 
+
+        while ( lif.hasNext() ){
+            String fornitoreCorr = lif.next();
+            Float prezzoCorr = lip.next();
+            
+            if ( fornitoreCorr == fornitore )
+            {
+                ret = prezzoCorr; 
+                return ret;
+            }
+        } 
+        return ret;
     }
 
     public static void main(String[] args) {
@@ -144,7 +212,7 @@ public class Sistema {
         Terminale.stampa(" ");
         //System.out.println(s.verificaMerciEOrdini());// restituisce true. Avrebbe restituito false, ad esempio, se la lista di fornitori di M1 fosse stata ["F1","F2","F3"] e quella dei prezzi [1.1, 1.3], o se la lista di fornitori di M2 avesse contenuto Y (ossia, la marca di M2), o se l’ordine ORD1 avesse riguardato la merce M4 (non presente nella lista delle merci), o se nell’ordine ORD1 fosse stato specificato il fornitore F3, che non fa parte dei fornitori di M1.
         //System.out.println(s.merciSopraSoglia(1.3f, 1.5f)); //restituisce la lista [“M2”, “M3”] perchè M2 ha come prezzi minimo e medio di fornitura il valore 2 (che è strettamente maggiore sia si 1.3 che di 1.5), ed M3 ha come prezzo minimo di fornitura il valore 1.4, che è maggiore di 1.3, e prezzo medio 1.7 (dato da (1.4+2)/2), che è maggiore di 1.5. La merce M1 non soddisfa invece nè il requisito sul prezzo minimo che sul prezzo medio.
-        //System.out.println(s.marcheOrdiniMassimi(50,80) );//restituisce la lista ["X"] perché è la marca della merce associata all’unico ordine di importo massimo. Gli unici ordini che ricadono nella finestra temporale [50..80] sono ORD1 e ORD3, e l’importo di ORD1 è 1.1×10=11 mentre quello di ORD3 è 8×2=16.
+        System.out.println(s.marcheOrdiniMassimi(50,80) );//restituisce la lista ["X"] perché è la marca della merce associata all’unico ordine di importo massimo. Gli unici ordini che ricadono nella finestra temporale [50..80] sono ORD1 e ORD3, e l’importo di ORD1 è 1.1×10=11 mentre quello di ORD3 è 8×2=16.
         
 
         //LinkedList<Float> list = new LinkedList<>(Arrays.asList(1.1f, 2.2f, 3.3f, 5.5f));

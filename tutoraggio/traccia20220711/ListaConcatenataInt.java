@@ -1,7 +1,9 @@
-package listeconcatenate;
+package traccia20220711;
 
 import java.util.*;
 
+import listeconcatenate.EccezioneIndiceNonValido;
+import listeconcatenate.EccezioneListaVuota;
 import terminale.Terminale;
 
 class NodoInt
@@ -323,4 +325,59 @@ public class ListaConcatenataInt
 		return massimoDa(testa);		
 	}
 
+	/*Si arricchisca la classe ListaConcatenataInt sviluppata durante il corso con un metodo boolean verificaOrdinamento() 
+		che verifica se la lista è formata da sequenze di valori positivi e negativi che soddisfano le seguenti condizioni: 
+			▪ tutte le sequenze di valori positivi sono ordinate in modo crescente; 
+			▪ tutte le sequenze di valori negativi sono ordinate in modo decrescente. 
+		Ad esempio, la lista [2, 3, 7, -1, -3, -4, -5, 8, 11, 20] soddisfa la condizione, mentre la lista [2, 3, 7, -1, -3, -2]
+		non la soddisfa. Il metodo verificaOrdinamento dovrà essere ricorsivo o invocare un opportuno metodo ricorsivo sulla 
+		classe NodoInt.  */
+
+		public boolean verificaOrdinamento() {
+			if (testa == null || testa.getSuccessivo() == null) return true;
+		
+			boolean flag = testa.getInfo() > 0;
+			return verificaOrdinamento(testa, testa.getSuccessivo(), flag);
+		}
+		
+
+	
+	private boolean verificaOrdinamento(NodoInt corrente, NodoInt successivo, boolean ordine)
+	{	
+		if (corrente == null || successivo == null) return true; // se richiamo sia corrente che successivo devo controllare che entrambi siano non nulli
+
+		if ( ordine )
+		{
+			if ( successivo.getInfo() > 0 )
+			{
+				if ( successivo.getInfo() >= corrente.getInfo() )
+				{
+					return verificaOrdinamento(successivo, successivo.getSuccessivo(), ordine);
+				}
+				return false;
+			}
+			return verificaOrdinamento(successivo, successivo.getSuccessivo(), false);
+		}
+
+		else
+		{
+			if ( successivo.getInfo() < 0 )
+			{
+				if ( successivo.getInfo() <= corrente.getInfo() )
+				{
+					return verificaOrdinamento(successivo, successivo.getSuccessivo(), ordine);
+				}
+				return false;
+			}
+			return verificaOrdinamento(successivo, successivo.getSuccessivo(), true);
+
+		}
+	}
+
+	public static void main(String[] args) {
+		ListaConcatenataInt lista = new ListaConcatenataInt(new int[] {2, 3, 7, -1, -3, -4, -5, 8, 11, 20});
+		Terminale.stampa(lista.verificaOrdinamento());
+	}
+
 }
+
