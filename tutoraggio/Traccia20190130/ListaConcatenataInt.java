@@ -324,25 +324,13 @@ public class ListaConcatenataInt
 		return massimoDa(testa);		
 	}
 
-	/*
-	
-	Si arricchisca la classe ListaConcatenataInt sviluppata durante 
+	/* Si arricchisca la classe ListaConcatenataInt sviluppata durante 
 	il corso con un metodo verificaLista() che riceve in un’altra 
 	ListaConcatenataInt l1 che contiene gli indici di tutti gli elementi 
 	nulli nella lista originale e restituisce True se e solo se effettivamente 
 	tutti e soli gli elementi puntati da l1 sono nulli, ad esempio se la lista è 
 	[20, 0, 10, 62, 0, 0, 12, 36, 6, 0] e l1=[ 1, 4, 5, 9] allora la funzione 
 	restituisce True. Il metodo dovrà essere ricorsivo o invocare un opportuno 
-	metodo ricorsivo sulla classe NodoInt. 
+	metodo ricorsivo sulla classe NodoInt. */
 
-	*/
-
-	private boolean verificaListaDa(NodoInt n1, NodoInt n2, int indiceCorr)
-	{	if ( n1 == null )
-			if ( n2 == null )
-				return true;
-		
-
-
-	}
 }
