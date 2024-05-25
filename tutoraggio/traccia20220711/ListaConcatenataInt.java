@@ -1,5 +1,3 @@
-package traccia20220711;
-
 import java.util.*;
 
 import listeconcatenate.EccezioneIndiceNonValido;
@@ -370,12 +368,11 @@ public class ListaConcatenataInt
 				return false;
 			}
 			return verificaOrdinamento(successivo, successivo.getSuccessivo(), true);
-
 		}
 	}
 
 	public static void main(String[] args) {
-		ListaConcatenataInt lista = new ListaConcatenataInt(new int[] {2, 3, 7, -1, -3, -4, -5, 8, 11, 20});
+		ListaConcatenataInt lista = new ListaConcatenataInt(new int[] {2, 3, 7, -1, -3, -2});
 		Terminale.stampa(lista.verificaOrdinamento());
 	}
 

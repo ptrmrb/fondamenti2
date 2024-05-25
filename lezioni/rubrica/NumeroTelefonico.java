@@ -1,4 +1,4 @@
-package rubrica;
+package lezioni.rubrica;
 
 // La classe genera oggetti immutabili
 public class NumeroTelefonico 

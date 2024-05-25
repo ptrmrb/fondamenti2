@@ -1,4 +1,4 @@
-package rubrica;
+package lezioni.rubrica;
 
 import terminale.*;
 

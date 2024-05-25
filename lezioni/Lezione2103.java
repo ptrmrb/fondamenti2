@@ -22,17 +22,9 @@ public class Lezione2103{
         // altro modo di scrivere questo assegnamento ma in una sola riga
         // attraverso l'operatore '?'
 
-        String s1 = (eta >= 18 ? "maggiorenne" : " minorenne");
+        //String s1 = (eta >= 18 ? "maggiorenne" : " minorenne");
 
-        Terminale.stampa(s1);
-
-
-        // noi sappiamo che a++ ha un valore, cosa da non fare mai:
-
-        int a = 5; 
-        int b = a++; // se faccio stampare b, vale 5 perche assegna il valore prima dell'incremento
-
-        // int b = ++a; questo invece vale 
+        Terminale.stampa(s);
 
     }
 }

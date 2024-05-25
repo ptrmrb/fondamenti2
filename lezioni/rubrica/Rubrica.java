@@ -1,4 +1,4 @@
-package rubrica;
+package lezioni.rubrica;
 
 //La classe genera oggetti mutabili
 public class Rubrica 

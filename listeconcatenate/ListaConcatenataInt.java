@@ -299,28 +299,31 @@ public class ListaConcatenataInt
 	{	return contaDa(testa,valore);		
 	}
 	
+	public int minimo()
+	{	if(eVuota())
+			throw new EccezioneListaVuota();		
+		return minimoDa(testa);		
+	}
 	private int minimoDa(NodoInt n)
 	{	if(n.getSuccessivo() == null)
 			return n.getInfo();
 		return Math.min(n.getInfo(), minimoDa(n.getSuccessivo()));
 	}
 	
-	public int minimo()
+	
+
+	public int massimo()
 	{	if(eVuota())
 			throw new EccezioneListaVuota();		
-		return minimoDa(testa);		
+		return massimoDa(testa);		
 	}
-	
+
 	private int massimoDa(NodoInt n)
 	{	if(n.getSuccessivo() == null)
 			return n.getInfo();
 		return Math.max(n.getInfo(), massimoDa(n.getSuccessivo()));
 	}
 	
-	public int massimo()
-	{	if(eVuota())
-			throw new EccezioneListaVuota();		
-		return massimoDa(testa);		
-	}
+	
 
 }
