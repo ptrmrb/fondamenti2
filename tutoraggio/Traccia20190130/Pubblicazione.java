@@ -3,7 +3,7 @@ package traccia20190130;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Pubblicazione {
+public class Pubblicazione{
     private String codice, titolo;
     private ArrayList<String> autori, keywords;
     private int data;
