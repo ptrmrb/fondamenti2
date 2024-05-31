@@ -1,3 +1,5 @@
+package traccia20180717;
+
 import java.util.*;
 
 import listeconcatenate.EccezioneIndiceNonValido;
@@ -299,82 +301,52 @@ public class ListaConcatenataInt
 	{	return contaDa(testa,valore);		
 	}
 	
+	public int minimo()
+	{	if(eVuota())
+			throw new EccezioneListaVuota();		
+		return minimoDa(testa);		
+	}
 	private int minimoDa(NodoInt n)
 	{	if(n.getSuccessivo() == null)
 			return n.getInfo();
 		return Math.min(n.getInfo(), minimoDa(n.getSuccessivo()));
 	}
 	
-	public int minimo()
-	{	if(eVuota())
-			throw new EccezioneListaVuota();		
-		return minimoDa(testa);		
-	}
 	
-	private int massimoDa(NodoInt n)
-	{	if(n.getSuccessivo() == null)
-			return n.getInfo();
-		return Math.max(n.getInfo(), massimoDa(n.getSuccessivo()));
-	}
-	
+
 	public int massimo()
 	{	if(eVuota())
 			throw new EccezioneListaVuota();		
 		return massimoDa(testa);		
 	}
 
-	/*	Si arricchisca la classe ListaConcatenataInt sviluppata durante il corso con un metodo boolean verificaOrdinamento() 
-		che verifica se la lista è formata da sequenze di valori positivi e negativi che soddisfano le seguenti condizioni: 
-			▪ tutte le sequenze di valori positivi sono ordinate in modo crescente; 
-			▪ tutte le sequenze di valori negativi sono ordinate in modo decrescente. 
-		Ad esempio, la lista [2, 3, 7, -1, -3, -4, -5, 8, 11, 20] soddisfa la condizione, mentre la lista [2, 3, 7, -1, -3, -2]
-		non la soddisfa. Il metodo verificaOrdinamento dovrà essere ricorsivo o invocare un opportuno metodo ricorsivo sulla 
-		classe NodoInt.  */
-
-		public boolean verificaOrdinamento() {
-			if (testa == null || testa.getSuccessivo() == null) return true;
-		
-			boolean flag = testa.getInfo() > 0;
-			return verificaOrdinamento(testa, testa.getSuccessivo(), flag);
-		}
-		
-
+	private int massimoDa(NodoInt n)
+	{	if(n.getSuccessivo() == null)
+			return n.getInfo();
+		return Math.max(n.getInfo(), massimoDa(n.getSuccessivo()));
+	}
 	
-	private boolean verificaOrdinamento(NodoInt corrente, NodoInt successivo, boolean ordine)
-	{	
-		if (corrente == null || successivo == null) return true; // se richiamo sia corrente che successivo devo controllare che entrambi siano non nulli
+	/* Si arricchisca la classe ListaConcatenataInt sviluppata durante il corso con un metodo verificaSottoliste(int l, int t)
+	che restituisce il numero di sottoliste di lunghezza l la cui somma è almeno t, ad esempio la lista [3, 0, 7, -2, 0, 5, 2, 9, -10]
+	con l=4, t=10 restituisce 2. Il metodo dovrà essere ricorsivo o invocare un opportuno metodo ricorsivo sulla classe NodoInt.  */
 
-		if ( ordine )
-		{
-			if ( successivo.getInfo() > 0 )
-			{
-				if ( successivo.getInfo() >= corrente.getInfo() )
-				{
-					return verificaOrdinamento(successivo, successivo.getSuccessivo(), ordine);
-				}
-				return false;
-			}
-			return verificaOrdinamento(successivo, successivo.getSuccessivo(), false);
-		}
-
-		else
-		{
-			if ( successivo.getInfo() < 0 )
-			{
-				if ( successivo.getInfo() <= corrente.getInfo() )
-				{
-					return verificaOrdinamento(successivo, successivo.getSuccessivo(), ordine);
-				}
-				return false;
-			}
-			return verificaOrdinamento(successivo, successivo.getSuccessivo(), true);
-		}
+	public int verificaSottoliste(int l, int t)
+	{
+		return verificaSottoliste ( testa , 0 , 0 , l,  t);
 	}
 
+	private int verificaSottoliste( NodoInt n , int lunghezzaAttuale , int sommaAttuale , int l , int t)
+	{
+		if ( n == null ) return 0;
+
+		if ( lunghezzaAttuale == l && sommaAttuale >= t )
+			return 1 + verificaSottoliste(n.getSuccessivo(), 0, 0, l, t);
+		return verificaSottoliste( n.getSuccessivo(), lunghezzaAttuale + 1 , sommaAttuale + n.getInfo(), l, t );
+		
+	}
+	
 	public static void main(String[] args) {
-		ListaConcatenataInt lista = new ListaConcatenataInt(new int[] {2, 3, 7, -1, -3, -2});
-		Terminale.stampa(lista.verificaOrdinamento());
+		ListaConcatenataInt lista = new ListaConcatenataInt(new int[] {3, 0, 7, -2, 0, 5, 2, 9, -10});
+		Terminale.stampa(lista.verificaSottoliste(4, 10));
 	}
-
 }
-

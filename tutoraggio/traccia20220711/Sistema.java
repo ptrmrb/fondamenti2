@@ -128,7 +128,7 @@ public class Sistema {
         if ( !verificaMerciEOrdini() ) return null; 
 
         LinkedList<String> ret = new LinkedList<>();
-        Float importoMassimo = 0f; 
+        float importoMassimo = 0;
         
         for ( Ordine o : ordini ){
 
@@ -176,7 +176,7 @@ public class Sistema {
 
     private float prezzoFornitore( String fornitore, Merce m)
     {
-        Float ret = 0f;
+        float ret = 0;
 
         LinkedList<String> fornitori = m.getListaFornitori(); // lista dei fornitori
         ListIterator<String> lif = fornitori.listIterator();
@@ -185,9 +185,9 @@ public class Sistema {
 
         while ( lif.hasNext() ){
             String fornitoreCorr = lif.next();
-            Float prezzoCorr = lip.next();
+            float prezzoCorr = lip.next();
             
-            if ( fornitoreCorr == fornitore )
+            if ( fornitoreCorr.equals(fornitore) )
             {
                 ret = prezzoCorr; 
                 return ret;

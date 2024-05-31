@@ -27,6 +27,7 @@ public class Prenotazione {
 	public int hashCode() {
 		return Objects.hash(Percorso, classe, cliente);
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

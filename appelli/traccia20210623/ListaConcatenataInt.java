@@ -1,3 +1,5 @@
+package traccia20210623;
+
 import java.util.*;
 
 import listeconcatenate.EccezioneIndiceNonValido;
@@ -299,82 +301,64 @@ public class ListaConcatenataInt
 	{	return contaDa(testa,valore);		
 	}
 	
+	public int minimo()
+	{	if(eVuota())
+			throw new EccezioneListaVuota();		
+		return minimoDa(testa);		
+	}
 	private int minimoDa(NodoInt n)
 	{	if(n.getSuccessivo() == null)
 			return n.getInfo();
 		return Math.min(n.getInfo(), minimoDa(n.getSuccessivo()));
 	}
 	
-	public int minimo()
-	{	if(eVuota())
-			throw new EccezioneListaVuota();		
-		return minimoDa(testa);		
-	}
 	
-	private int massimoDa(NodoInt n)
-	{	if(n.getSuccessivo() == null)
-			return n.getInfo();
-		return Math.max(n.getInfo(), massimoDa(n.getSuccessivo()));
-	}
-	
+
 	public int massimo()
 	{	if(eVuota())
 			throw new EccezioneListaVuota();		
 		return massimoDa(testa);		
 	}
 
-	/*	Si arricchisca la classe ListaConcatenataInt sviluppata durante il corso con un metodo boolean verificaOrdinamento() 
-		che verifica se la lista è formata da sequenze di valori positivi e negativi che soddisfano le seguenti condizioni: 
-			▪ tutte le sequenze di valori positivi sono ordinate in modo crescente; 
-			▪ tutte le sequenze di valori negativi sono ordinate in modo decrescente. 
-		Ad esempio, la lista [2, 3, 7, -1, -3, -4, -5, 8, 11, 20] soddisfa la condizione, mentre la lista [2, 3, 7, -1, -3, -2]
-		non la soddisfa. Il metodo verificaOrdinamento dovrà essere ricorsivo o invocare un opportuno metodo ricorsivo sulla 
-		classe NodoInt.  */
-
-		public boolean verificaOrdinamento() {
-			if (testa == null || testa.getSuccessivo() == null) return true;
-		
-			boolean flag = testa.getInfo() > 0;
-			return verificaOrdinamento(testa, testa.getSuccessivo(), flag);
-		}
-		
-
-	
-	private boolean verificaOrdinamento(NodoInt corrente, NodoInt successivo, boolean ordine)
-	{	
-		if (corrente == null || successivo == null) return true; // se richiamo sia corrente che successivo devo controllare che entrambi siano non nulli
-
-		if ( ordine )
-		{
-			if ( successivo.getInfo() > 0 )
-			{
-				if ( successivo.getInfo() >= corrente.getInfo() )
-				{
-					return verificaOrdinamento(successivo, successivo.getSuccessivo(), ordine);
-				}
-				return false;
-			}
-			return verificaOrdinamento(successivo, successivo.getSuccessivo(), false);
-		}
-
-		else
-		{
-			if ( successivo.getInfo() < 0 )
-			{
-				if ( successivo.getInfo() <= corrente.getInfo() )
-				{
-					return verificaOrdinamento(successivo, successivo.getSuccessivo(), ordine);
-				}
-				return false;
-			}
-			return verificaOrdinamento(successivo, successivo.getSuccessivo(), true);
-		}
+	private int massimoDa(NodoInt n)
+	{	if(n.getSuccessivo() == null)
+			return n.getInfo();
+		return Math.max(n.getInfo(), massimoDa(n.getSuccessivo()));
 	}
+	
+	/*Si arricchisca la classe ListaConcatenataInt sviluppata durante il corso con un metodo verifica(int x) che restituisca true
+	se e solo se lista contiene almeno x volte uno scalino, ossia un elemento maggiore della media dei due elementi
+	successivi (un elemento che non abbia almeno due elementi successivi non è uno scalino). Il metodo verifica dovrà
+	essere ricorsivo o invocare un opportuno metodo ricorsivo sulla classe NodoInt. */
+	
+	public boolean verifica ( int x )
+	{	
+
+		NodoInt corrente = testa;
+		NodoInt successivo1 = testa.getSuccessivo();
+		NodoInt successivo2 = testa.getSuccessivo().getSuccessivo();
+
+		return  verifica( corrente, successivo1 , successivo2 ) > x; 
+	}
+
+	private int verifica ( NodoInt c, NodoInt s1, NodoInt s2 )
+	{
+		if ( s2 == null ) return 0;
+
+		if ( c.getInfo() > (s1.getInfo() + s2.getInfo())/2 )
+			return 1 + verifica( s1 , s2, s2.getSuccessivo() );
+		return verifica( s1, s2, s2.getSuccessivo());
+
+	}
+
 
 	public static void main(String[] args) {
-		ListaConcatenataInt lista = new ListaConcatenataInt(new int[] {2, 3, 7, -1, -3, -2});
-		Terminale.stampa(lista.verificaOrdinamento());
+		int[] lista = { 7, 5, 7, 1, 3 };
+
+		ListaConcatenataInt l1 = new ListaConcatenataInt(lista);
+		 
+		Terminale.stampa(l1.verifica(2));
+
+
 	}
-
 }
-
