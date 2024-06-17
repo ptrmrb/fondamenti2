@@ -1,4 +1,4 @@
-package Traccia20190130;
+package traccia20190130;
 
 import java.util.ArrayList;
 import java.util.Collections;

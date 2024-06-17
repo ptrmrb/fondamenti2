@@ -121,8 +121,8 @@ public class Gestione
     {   
         for ( String t : tipologie )
             if ( !tipologieAttore.contains(t))
-                return false; 
-        return true; 
+                return false;
+        return true;
     }
 
 

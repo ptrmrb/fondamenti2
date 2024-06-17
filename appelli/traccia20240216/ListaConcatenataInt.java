@@ -1,8 +1,8 @@
-package traccia20220921;
+package traccia20240216;
 
 import java.util.*;
-import listeconcatenate.*;
 import terminale.Terminale;
+import listeconcatenate.*;
 
 class NodoInt
 {	private int info;
@@ -10,7 +10,7 @@ class NodoInt
 	
 	public NodoInt(int info, NodoInt successivo)
 	{	this.info = info;
-		this.successivo = successivo;
+		this.successivo = successivo;		
 	}
 	
 	public NodoInt(int info)
@@ -299,62 +299,78 @@ public class ListaConcatenataInt
 	{	return contaDa(testa,valore);		
 	}
 	
+	public int minimo()
+	{	if(eVuota())
+			throw new EccezioneListaVuota();		
+		return minimoDa(testa);		
+	}
 	private int minimoDa(NodoInt n)
 	{	if(n.getSuccessivo() == null)
 			return n.getInfo();
 		return Math.min(n.getInfo(), minimoDa(n.getSuccessivo()));
 	}
 	
-	public int minimo()
-	{	if(eVuota())
-			throw new EccezioneListaVuota();		
-		return minimoDa(testa);		
-	}
 	
-	private int massimoDa(NodoInt n)
-	{	if(n.getSuccessivo() == null)
-			return n.getInfo();
-		return Math.max(n.getInfo(), massimoDa(n.getSuccessivo()));
-	}
-	
+
 	public int massimo()
 	{	if(eVuota())
 			throw new EccezioneListaVuota();		
 		return massimoDa(testa);		
 	}
 
-	public boolean listaEquilibrata()
-	{
-		return listaEquilibrata(testa, 0, 0, 0);
+	private int massimoDa(NodoInt n)
+	{	if(n.getSuccessivo() == null)
+			return n.getInfo();
+		return Math.max(n.getInfo(), massimoDa(n.getSuccessivo()));
 	}
 	
-	private boolean listaEquilibrata ( NodoInt n , int positivi,int negativi, int somma)
-	{	
-		if ( n == null )
-			return positivi == negativi && somma == 0;
+	/*Si arricchisca la classe ListaConcatenataInt sviluppata durante il corso con un metodo
+	verifica(int lungMin, int n) che restituisce true se  è  solo  se  la  lista  non 
+	contiene  il valore  n  ed è  composta  da sequenze  di  lunghezza  strettamente 
+	maggiore di lungMin composte da numeri tutti minori di n o tutti maggiori di n. 
+	Il metodo verifica dovrà essere ricorsivo o invocare un opportuno metodo ricorsivo
+	sulla classe NodoInt.  */
 
+	public boolean verifica(int lungMin, int n)
+	{
+		return verificaPriv(testa, lungMin, n, 1 );
+	}
 
-		if ( n.getInfo() == 0 )
-			return listaEquilibrata(n.getSuccessivo(), positivi, negativi, somma);
+	private boolean verificaPriv ( NodoInt n, int lMin , int v, int lCorr )
+	{
+		if ( n.getSuccessivo() == null ) return true;
 
-		if ( n.getInfo() > 0 )
-			return listaEquilibrata(n.getSuccessivo(), positivi + 1, negativi, somma + n.getInfo());
-		return listaEquilibrata(n.getSuccessivo(), positivi, negativi + 1, somma + n.getInfo());
+		if ( n.getInfo() > v )
+		{
+			if ( n.getSuccessivo().getInfo() > v )
+				return verificaPriv( n.getSuccessivo(),  lMin , v, lCorr + 1 );
+			// se non è maggiore dato che non può essere uguale è per forza minore 
+			if ( lCorr >= lMin )
+				return verificaPriv( n.getSuccessivo(), lMin, v, 0 );
+			return false;
+		}
+
+		else if ( n.getInfo() < v )
+		{
+			if ( n.getSuccessivo().getInfo() < v )
+				return verificaPriv( n.getSuccessivo(),  lMin , v, lCorr + 1 );
+			// se non è minore dato che non può essere uguale è per forza maggiore 
+			if ( lCorr >= lMin )
+				return verificaPriv( n.getSuccessivo(), lMin, v, 0 );
+			return false;
+		}
+
+		else return false;
 	}
 
 	public static void main(String[] args) {
+		int[] listat = { 6, 7, 6, 2, 1, 0, 1, 9, 9, 9}; // true
+		int[] listaf = {6,7,6,2,1,9,9,}; // false
+		
+        ListaConcatenataInt lt = new ListaConcatenataInt(listat);
+        ListaConcatenataInt lf = new ListaConcatenataInt(listaf);
 
-		ListaConcatenataInt lista = new ListaConcatenataInt();
-		lista.aggiungiInCoda(5);
-		lista.aggiungiInCoda(-3);
-		lista.aggiungiInCoda(-4);
-		lista.aggiungiInCoda(2);
-		lista.aggiungiInCoda(0);
-		lista.aggiungiInCoda(-4);
-		lista.aggiungiInCoda(4);
-
-		Terminale.stampa(lista.listaEquilibrata());
-	}
-	
+		Terminale.stampa(lt.verifica( 2, 5 ));
 	}
 
+}

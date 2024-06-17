@@ -29,6 +29,7 @@ public class Sistema
 		{	LinkedList<String> percorso = p.getPercorso();
 			ListIterator<String> lip = percorso.listIterator();
 			ListIterator<String> lid = percorso.listIterator(1);
+			
 			while(lid.hasNext())
 			{	String partenza = lip.next();
 				String destinazione = lid.next();

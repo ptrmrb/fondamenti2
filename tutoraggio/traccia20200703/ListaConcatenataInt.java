@@ -1,7 +1,9 @@
-package traccia20220921;
+package traccia20200703;
 
 import java.util.*;
-import listeconcatenate.*;
+
+import listeconcatenate.EccezioneIndiceNonValido;
+import listeconcatenate.EccezioneListaVuota;
 import terminale.Terminale;
 
 class NodoInt
@@ -10,7 +12,7 @@ class NodoInt
 	
 	public NodoInt(int info, NodoInt successivo)
 	{	this.info = info;
-		this.successivo = successivo;
+		this.successivo = successivo;		
 	}
 	
 	public NodoInt(int info)
@@ -299,62 +301,67 @@ public class ListaConcatenataInt
 	{	return contaDa(testa,valore);		
 	}
 	
+	public int minimo()
+	{	if(eVuota())
+			throw new EccezioneListaVuota();		
+		return minimoDa(testa);		
+	}
 	private int minimoDa(NodoInt n)
 	{	if(n.getSuccessivo() == null)
 			return n.getInfo();
 		return Math.min(n.getInfo(), minimoDa(n.getSuccessivo()));
 	}
 	
-	public int minimo()
-	{	if(eVuota())
-			throw new EccezioneListaVuota();		
-		return minimoDa(testa);		
-	}
 	
-	private int massimoDa(NodoInt n)
-	{	if(n.getSuccessivo() == null)
-			return n.getInfo();
-		return Math.max(n.getInfo(), massimoDa(n.getSuccessivo()));
-	}
-	
+
 	public int massimo()
 	{	if(eVuota())
 			throw new EccezioneListaVuota();		
 		return massimoDa(testa);		
 	}
 
-	public boolean listaEquilibrata()
-	{
-		return listaEquilibrata(testa, 0, 0, 0);
+	private int massimoDa(NodoInt n)
+	{	if(n.getSuccessivo() == null)
+			return n.getInfo();
+		return Math.max(n.getInfo(), massimoDa(n.getSuccessivo()));
 	}
 	
-	private boolean listaEquilibrata ( NodoInt n , int positivi,int negativi, int somma)
+	/*
+	 * Si arricchisca la classe ListaConcatenataInt sviluppata durante il corso con un metodo
+	 * alternati che restituisca true se e solo se, scorrendo la lista dall’inizio alla fine, si incontrano valori
+	 * alternati positivi e negativi. In altri termini, per ogni nodo deve valere che: se esso contiene un valore positivo,
+	 * allora il successivo (se esiste) contiene un valore negativo, e viceversa. Si assuma inoltre che una lista vuota
+	 * soddisfi la proprietà verificata da alternati. Il metodo alternati dovrà essere ricorsivo o invocare un opportuno metodo
+	 * ricorsivo sulla classe NodoInt.
+	 */
+
+	public boolean alternati( )
+	{
+		if ( eVuota() )
+			return true; 
+		return alternati(testa); 
+	}
+
+	private boolean alternati( NodoInt corrente)
 	{	
-		if ( n == null )
-			return positivi == negativi && somma == 0;
+		Terminale.stampa(corrente.getInfo());
+		if ( corrente.getSuccessivo() == null ) return true; 
 
+		if ( corrente.getSuccessivo().getInfo() == 0 ){
+			if ( corrente.getSuccessivo().getSuccessivo() == null ) // se lo zero è l'ultimo elemento della lista restutuisci true 
+				return true;
+			return alternati(corrente.getSuccessivo().getSuccessivo()); // altrimenti lo salti e vai al valore successivo 
+		}
 
-		if ( n.getInfo() == 0 )
-			return listaEquilibrata(n.getSuccessivo(), positivi, negativi, somma);
-
-		if ( n.getInfo() > 0 )
-			return listaEquilibrata(n.getSuccessivo(), positivi + 1, negativi, somma + n.getInfo());
-		return listaEquilibrata(n.getSuccessivo(), positivi, negativi + 1, somma + n.getInfo());
+		if ( corrente.getInfo() * corrente.getSuccessivo().getInfo() < 0 )
+			return alternati(corrente.getSuccessivo());
+		return false;
 	}
 
 	public static void main(String[] args) {
-
-		ListaConcatenataInt lista = new ListaConcatenataInt();
-		lista.aggiungiInCoda(5);
-		lista.aggiungiInCoda(-3);
-		lista.aggiungiInCoda(-4);
-		lista.aggiungiInCoda(2);
-		lista.aggiungiInCoda(0);
-		lista.aggiungiInCoda(-4);
-		lista.aggiungiInCoda(4);
-
-		Terminale.stampa(lista.listaEquilibrata());
-	}
-	
+		ListaConcatenataInt lista = new ListaConcatenataInt(new int[] {2, -3, 7, -1,  3, -2}); 
+		Terminale.stampa(lista.alternati());
 	}
 
+
+}

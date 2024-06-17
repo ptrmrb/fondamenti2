@@ -1,6 +1,7 @@
-package traccia20220921;
+package traccia20200916;
 
 import java.util.*;
+
 import listeconcatenate.*;
 import terminale.Terminale;
 
@@ -10,7 +11,7 @@ class NodoInt
 	
 	public NodoInt(int info, NodoInt successivo)
 	{	this.info = info;
-		this.successivo = successivo;
+		this.successivo = successivo;		
 	}
 	
 	public NodoInt(int info)
@@ -299,62 +300,51 @@ public class ListaConcatenataInt
 	{	return contaDa(testa,valore);		
 	}
 	
+	public int minimo()
+	{	if(eVuota())
+			throw new EccezioneListaVuota();		
+		return minimoDa(testa);		
+	}
 	private int minimoDa(NodoInt n)
 	{	if(n.getSuccessivo() == null)
 			return n.getInfo();
 		return Math.min(n.getInfo(), minimoDa(n.getSuccessivo()));
 	}
 	
-	public int minimo()
-	{	if(eVuota())
-			throw new EccezioneListaVuota();		
-		return minimoDa(testa);		
-	}
 	
-	private int massimoDa(NodoInt n)
-	{	if(n.getSuccessivo() == null)
-			return n.getInfo();
-		return Math.max(n.getInfo(), massimoDa(n.getSuccessivo()));
-	}
-	
+
 	public int massimo()
 	{	if(eVuota())
 			throw new EccezioneListaVuota();		
 		return massimoDa(testa);		
 	}
 
-	public boolean listaEquilibrata()
-	{
-		return listaEquilibrata(testa, 0, 0, 0);
+	private int massimoDa(NodoInt n)
+	{	if(n.getSuccessivo() == null)
+			return n.getInfo();
+		return Math.max(n.getInfo(), massimoDa(n.getSuccessivo()));
 	}
 	
-	private boolean listaEquilibrata ( NodoInt n , int positivi,int negativi, int somma)
-	{	
-		if ( n == null )
-			return positivi == negativi && somma == 0;
+	public boolean stesseSottosequenze()
+	{
+		if ( eVuota() || lunghezza % 2 != 0 )
+			return false;
 
+		return stesseSottosequenze(testa); 
+	}
 
-		if ( n.getInfo() == 0 )
-			return listaEquilibrata(n.getSuccessivo(), positivi, negativi, somma);
+	private boolean stesseSottosequenze( NodoInt n )
+	{
+		Terminale.stampa(n.getInfo());
+		if ( n.getSuccessivo().getSuccessivo() == null ) return true;
 
-		if ( n.getInfo() > 0 )
-			return listaEquilibrata(n.getSuccessivo(), positivi + 1, negativi, somma + n.getInfo());
-		return listaEquilibrata(n.getSuccessivo(), positivi, negativi + 1, somma + n.getInfo());
+		if ( n.getInfo() == n.getSuccessivo().getSuccessivo().getInfo() )
+			return stesseSottosequenze(n.getSuccessivo());
+		return false;
 	}
 
 	public static void main(String[] args) {
-
-		ListaConcatenataInt lista = new ListaConcatenataInt();
-		lista.aggiungiInCoda(5);
-		lista.aggiungiInCoda(-3);
-		lista.aggiungiInCoda(-4);
-		lista.aggiungiInCoda(2);
-		lista.aggiungiInCoda(0);
-		lista.aggiungiInCoda(-4);
-		lista.aggiungiInCoda(4);
-
-		Terminale.stampa(lista.listaEquilibrata());
+		ListaConcatenataInt lista = new ListaConcatenataInt(new int[] {7,2,7,2,7,2});
+		Terminale.stampa(lista.stesseSottosequenze());
 	}
-	
-	}
-
+}

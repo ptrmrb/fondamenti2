@@ -1,3 +1,5 @@
+package traccia20220711;
+
 import java.util.*;
 
 import listeconcatenate.EccezioneIndiceNonValido;
