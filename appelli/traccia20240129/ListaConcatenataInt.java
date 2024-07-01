@@ -1,7 +1,8 @@
-package traccia20220921;
+package traccia20240129;
 
 import java.util.*;
 import listeconcatenate.*;
+
 import terminale.Terminale;
 
 class NodoInt
@@ -10,7 +11,7 @@ class NodoInt
 	
 	public NodoInt(int info, NodoInt successivo)
 	{	this.info = info;
-		this.successivo = successivo;
+		this.successivo = successivo;		
 	}
 	
 	public NodoInt(int info)
@@ -299,45 +300,56 @@ public class ListaConcatenataInt
 	{	return contaDa(testa,valore);		
 	}
 	
-	private int minimoDa(NodoInt n)
-	{	if(n.getSuccessivo() == null)
-			return n.getInfo();
-		return Math.min(n.getInfo(), minimoDa(n.getSuccessivo()));
-	}
-	
 	public int minimo()
 	{	if(eVuota())
 			throw new EccezioneListaVuota();		
 		return minimoDa(testa);		
 	}
-	
-	private int massimoDa(NodoInt n)
+	private int minimoDa(NodoInt n)
 	{	if(n.getSuccessivo() == null)
 			return n.getInfo();
-		return Math.max(n.getInfo(), massimoDa(n.getSuccessivo()));
+		return Math.min(n.getInfo(), minimoDa(n.getSuccessivo()));
 	}
-	
+
 	public int massimo()
 	{	if(eVuota())
 			throw new EccezioneListaVuota();		
 		return massimoDa(testa);		
 	}
 
-	
-
-	public static void main(String[] args) {
-
-		ListaConcatenataInt lista = new ListaConcatenataInt();
-		lista.aggiungiInCoda(5);
-		lista.aggiungiInCoda(-3);
-		lista.aggiungiInCoda(-4);
-		lista.aggiungiInCoda(2);
-		lista.aggiungiInCoda(0);
-		lista.aggiungiInCoda(-4);
-		lista.aggiungiInCoda(4);
-
-		//Terminale.stampa(lista.listaEquilibrata());
-	}
-	
+	private int massimoDa(NodoInt n)
+	{	if(n.getSuccessivo() == null)
+			return n.getInfo();
+		return Math.max(n.getInfo(), massimoDa(n.getSuccessivo()));
 	}
 
+	public boolean verificaSomme ( int k )
+	{
+		return verificaSommeDa(testa, 0, k);
+	}
+
+	private boolean verificaSommeDa(NodoInt n, int somma, int k )
+	{
+		if ( n == null && somma == k) return true;
+
+		if ( n.getInfo() != 0 )
+			return verificaSommeDa(n.getSuccessivo(), somma+=n.getInfo(), k);
+		else 
+			if ( n.getSuccessivo().getInfo() == 0 )
+				return verificaSommeDa(n.getSuccessivo().getSuccessivo(), 0, k);
+			if ( somma == k )
+				return verificaSommeDa(n.getSuccessivo(), 0, k);
+			return false; 
+	}
+
+
+	public static void main(String[] args)
+	{
+		int[] lista = { 3, 2, 0, 2, 2, 1, 0, 0, 5 };
+
+		ListaConcatenataInt l1 = new ListaConcatenataInt(lista);
+		 
+		Terminale.stampa(l1.verificaSomme(5));
+
+	}
+}

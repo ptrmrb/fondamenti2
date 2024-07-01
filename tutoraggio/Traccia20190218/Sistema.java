@@ -65,15 +65,9 @@ public class Sistema {
             if (art.getClienti().contains(a) && art.getClienti().contains(b))
                 ret.add(art);
         
-        ordinaDescrescente(ret);
+            Collections.reverse(ret);
     	return ret;
     }
-    //ordinare senza compare to ordinaCrescenteInserimento
-    private void ordinaDescrescente(ArrayList<Articolo> lista) {
-		Collections.sort(lista);
-		Collections.reverse(lista);
-	}
-    
 
 
     public static void main(String[] args) {

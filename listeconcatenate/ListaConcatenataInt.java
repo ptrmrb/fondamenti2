@@ -323,7 +323,5 @@ public class ListaConcatenataInt
 			return n.getInfo();
 		return Math.max(n.getInfo(), massimoDa(n.getSuccessivo()));
 	}
-	
-	
 
 }

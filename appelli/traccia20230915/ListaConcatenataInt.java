@@ -1,7 +1,9 @@
-package traccia20220921;
+package traccia20230915;
 
 import java.util.*;
-import listeconcatenate.*;
+
+import listeconcatenate.EccezioneIndiceNonValido;
+import listeconcatenate.EccezioneListaVuota;
 import terminale.Terminale;
 
 class NodoInt
@@ -10,7 +12,7 @@ class NodoInt
 	
 	public NodoInt(int info, NodoInt successivo)
 	{	this.info = info;
-		this.successivo = successivo;
+		this.successivo = successivo;		
 	}
 	
 	public NodoInt(int info)
@@ -299,45 +301,69 @@ public class ListaConcatenataInt
 	{	return contaDa(testa,valore);		
 	}
 	
+	public int minimo()
+	{	if(eVuota())
+			throw new EccezioneListaVuota();		
+		return minimoDa(testa);		
+	}
 	private int minimoDa(NodoInt n)
 	{	if(n.getSuccessivo() == null)
 			return n.getInfo();
 		return Math.min(n.getInfo(), minimoDa(n.getSuccessivo()));
 	}
 	
-	public int minimo()
-	{	if(eVuota())
-			throw new EccezioneListaVuota();		
-		return minimoDa(testa);		
-	}
 	
-	private int massimoDa(NodoInt n)
-	{	if(n.getSuccessivo() == null)
-			return n.getInfo();
-		return Math.max(n.getInfo(), massimoDa(n.getSuccessivo()));
-	}
-	
+
 	public int massimo()
 	{	if(eVuota())
 			throw new EccezioneListaVuota();		
 		return massimoDa(testa);		
 	}
 
+	private int massimoDa(NodoInt n)
+	{	if(n.getSuccessivo() == null)
+			return n.getInfo();
+		return Math.max(n.getInfo(), massimoDa(n.getSuccessivo()));
+	}
 	
+	/*Si  arricchisca  la  classe  ListaConcatenataInt  sviluppata  durante  il  corso  con  un  metodo  contaTerne  che  restituisce 
+quante volte nella lista accade che l’elemento in posizione i sia pari alla somma algebrica degli elementi nelle posizioni 
+i-1  e  i+1.  Si  noti  che,  se  la  lista  non  ha  almeno  3  elementi,  allora  il  metodo  contaTerne  restituisce  0.  Il  metodo 
+contaTerne dovrà essere ricorsivo o invocare un opportuno metodo ricorsivo sulla classe NodoInt. 
+ 
+Esempio. Se la lista è [12, 20, 8, 3, 2, 4, 2, -2], allora il metodo restituisce 3, in quanto:  
+• l’elemento in posizione i=1 (20) è pari alla somma algebrica degli elementi nelle posizioni i-1 e i+1 (12+8); 
+• l’elemento in posizione i=5 (4) è pari alla somma algebrica degli elementi nelle posizioni i-1 e i+1 (2+2); 
+• l’elemento in posizione i=6 (2) è pari alla somma algebrica degli elementi nelle posizioni i-1 e i+1 (4-2); 
+• nessun altro elemento soddisfa la condizione.  */
+
+	public int contaTerne( )
+	{
+		if ( lunghezza < 3 ) return 0;
+
+		return contaTerneDa(testa, testa.getSuccessivo(), testa.getSuccessivo().getSuccessivo()); 
+	} 
+
+	private int contaTerneDa ( NodoInt precedente, NodoInt corrente, NodoInt successivo)
+	{
+		if ( successivo == null ) return 0;
+
+		Terminale.stampa(precedente.getInfo() + successivo.getInfo());
+
+		if ( corrente.getInfo() == precedente.getInfo() + successivo.getInfo() )
+		{
+			//Terminale.stampa(corrente.getInfo());
+			return 1 + contaTerneDa(precedente.getSuccessivo(), corrente.getSuccessivo(), successivo.getSuccessivo());
+		}
+		else
+			return contaTerneDa(precedente.getSuccessivo(), corrente.getSuccessivo(), successivo.getSuccessivo());
+	}
 
 	public static void main(String[] args) {
+		int[] lista = { 12, 20, 8, 3, 2, 4, 2, -2 };
 
-		ListaConcatenataInt lista = new ListaConcatenataInt();
-		lista.aggiungiInCoda(5);
-		lista.aggiungiInCoda(-3);
-		lista.aggiungiInCoda(-4);
-		lista.aggiungiInCoda(2);
-		lista.aggiungiInCoda(0);
-		lista.aggiungiInCoda(-4);
-		lista.aggiungiInCoda(4);
-
-		//Terminale.stampa(lista.listaEquilibrata());
+		ListaConcatenataInt l1 = new ListaConcatenataInt(lista);
+		 
+		Terminale.stampa(l1.contaTerne());
 	}
-	
-	}
-
+}
