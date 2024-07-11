@@ -15,13 +15,6 @@ public class Sistema {
         this.negozi = new LinkedList<>(negozi);
     }
 
-    /**
-     *
-     * @param data
-     * @return la lista dei nomi dei negozi presso i quali, nel giorno data,
-     * sono stati effettuati il maggior numero di acquisti.
-     */
-
     public LinkedList<String>  negoziPreferiti(int  data)
     {
         LinkedList<String> ret = new LinkedList<>();
@@ -48,36 +41,7 @@ public class Sistema {
         }
 
         return ret;
-    }
-
-    
-
-
-    /**
-     *
-     * @param dataInizio
-     * @param dataFine
-     * @return la lista dei codici fiscali dei clienti che,
-     * nel periodo compreso tra il giorno dataInizio e il giorno dataFine (estremi inclusi),
-     * hanno effettuato acquisti solo in negozi ubicati in una città diversa
-     * da quella in cui risiedono.
-     */
-
-    public  LinkedList<String> clientiEsterniPeriodo(int  dataInizio,  int  dataFine)
-    {
-        LinkedList<String> ret = new LinkedList<>();
-
-
-
-        return ret;
-    }
-
-    /**
-     *
-     * @return la lista dei codici fiscali dei clienti che hanno effettuato acquisti presso
-     * almeno 2 città diverse (un acquisto si intende effettuato presso una città se
-     * è effettuato presso un negozio di tale città).
-     */
+    }  
     
 
     public static void main(String[] args) {

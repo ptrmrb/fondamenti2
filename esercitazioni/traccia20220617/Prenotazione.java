@@ -1,46 +1,47 @@
 package traccia20220617;
 import java.util.*;
 
+import java.util.LinkedList;
+
 public class Prenotazione {
-	private LinkedList<String> Percorso;
-	private String cliente, classe;
-	
-	public LinkedList<String> getPercorso() {
-		return Percorso;
-	}
-	public String getNomeCliente() {
-		return cliente;
-	}
-	public String getClasse() {
-		return classe;
-	}
-	public void setPercorso(LinkedList<String> percorso) {
-		Percorso = percorso;
-	}
-	public void setCliente(String cliente) {
-		this.cliente = cliente;
-	}
-	public void setClasse(String classe) {
-		this.classe = classe;
-	}
-	@Override
-	public int hashCode() {
-		return Objects.hash(Percorso, classe, cliente);
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Prenotazione other = (Prenotazione) obj;
-		return Objects.equals(Percorso, other.Percorso) && Objects.equals(classe, other.classe)
-				&& Objects.equals(cliente, other.cliente);
-	}
-	
-	
-	
+    private LinkedList<String> percorso;
+    private String nomeCliente;
+    private String classe;
+
+    public Prenotazione(LinkedList<String> percorso, String nomeCliente, String classe) {
+        this.percorso = percorso;
+        this.nomeCliente = nomeCliente;
+        this.classe = classe;
+    }
+
+    public LinkedList<String> getPercorso() {
+        return percorso;
+    }
+
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+
+    public String getClasse() {
+        return classe;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Prenotazione that = (Prenotazione) o;
+        return percorso.equals(that.percorso) &&
+               nomeCliente.equals(that.nomeCliente) &&
+               classe.equals(that.classe);
+    }
+
+    @Override
+    public String toString() {
+        return "Prenotazione{" +
+                "percorso=" + percorso +
+                ", nomeCliente='" + nomeCliente + '\'' +
+                ", classe='" + classe + '\'' +
+                '}';
+    }
 }
