@@ -23,7 +23,7 @@ public class Sistema {
 
         for ( String s : offerenti )
 
-            if ( s != nomeAcquirente ){
+            if ( s == nomeAcquirente ){
 
                 autoriOpereS = trovaAutoreOperaNomeAcquirente(s);
                 if ( !autoriOpereS.isEmpty() )      // cosi mi evito qualche iterazione a vuoto
